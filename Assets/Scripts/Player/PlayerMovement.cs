@@ -6,15 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private InputActionReference _moveInput;
     private PlayerDataModel _dataModel;
-    private Vector2 _direction;
+    private Vector3 _direction;
 
     private void OnEnable() => BindEvent();
     private void Update() => Move();
     private void OnDisable() => UnBindEvent();
 
-    private void StartMove(InputAction.CallbackContext context) => _direction = context.ReadValue<Vector2>().normalized;
-    private void StopMove(InputAction.CallbackContext context) => _direction = Vector2.zero;
-    private void Move() => transform.Translate(_direction * _dataModel.MoveSpeed * Time.deltaTime);
+    private void StartMove(InputAction.CallbackContext context) => _direction = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+    private void StopMove(InputAction.CallbackContext context) => _direction = Vector3.zero;
+    private void Move() => transform.Translate(_direction.normalized * _dataModel.MoveSpeed * Time.deltaTime);
 
     [Inject]
     public void Inject(PlayerDataModel dataModel) => _dataModel = dataModel;
@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
         _moveInput.action.Enable();
         _moveInput.action.performed += StartMove;
         _moveInput.action.canceled += StopMove;
-        Debug.Log($"이동속도 : {_dataModel.MoveSpeed}");
     }
 
     private void UnBindEvent()

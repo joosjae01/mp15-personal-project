@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartMove(InputAction.CallbackContext context) => _direction = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
     private void StopMove(InputAction.CallbackContext context) => _direction = Vector3.zero;
-    private void Move() => transform.Translate(_direction.normalized * _dataModel.MoveSpeed * Time.deltaTime);
+    private void Move() => transform.Translate(_direction.normalized * _dataModel.MoveSpeed * Time.deltaTime, Space.World);
     private void StartSound(InputAction.CallbackContext context) => _soundManager.PlaySound(SoundEffectType.PlayerWalking);
     private void StopSound(InputAction.CallbackContext context) => _soundManager.PauseSound(SoundEffectType.PlayerWalking);
 

@@ -11,6 +11,9 @@ public class MissionLifetimeScope : LifetimeScope
         builder.RegisterInstance(_playerDataSO);
         builder.Register<PlayerDataModel>(Lifetime.Scoped);
         builder.RegisterComponentInHierarchy<MockSoundManager>().As<ISoundService>().AsSelf();
+        builder.RegisterComponentInHierarchy<RayCaster>();
+        builder.RegisterComponentInHierarchy<PlayerRotate>();
+        builder.RegisterComponentInHierarchy<PlayerCamera>();
         builder.RegisterComponentInHierarchy<PlayerHealth>();
         builder.RegisterComponentInHierarchy<PlayerMovement>();
     }

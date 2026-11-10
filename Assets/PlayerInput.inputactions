@@ -111,7 +111,7 @@
                 {
                     "name": "",
                     "id": "a1dfedf4-4739-4ab6-8a94-ede6fc0c0fc2",
-                    "path": "<Mouse>/position",
+                    "path": "<Mouse>/{Point}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

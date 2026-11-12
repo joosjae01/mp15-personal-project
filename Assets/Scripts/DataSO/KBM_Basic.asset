@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c8d946b8a45c7248b255e9719eb0c53, type: 3}
+  m_Name: KBM_Basic
+  m_EditorClassIdentifier: Assembly-CSharp::BasicInputAction
+  Move: {fileID: -8237666089566471931, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}
+  Look: {fileID: -6709516552813763022, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}
+  Swap: {fileID: 3829694360588948970, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}
+  Fire: {fileID: -1276603437341083824, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}
+  Reload: {fileID: 7316508319817757635, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}
+  Stratagem: {fileID: 6347600190019769015, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}

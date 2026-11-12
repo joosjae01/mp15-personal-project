@@ -3,7 +3,7 @@ using VContainer;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
-    private PlayerDataModel _dataModel;
+    [Inject] private PlayerDataModel _dataModel;
 
     public void TakeDamage(float damage)
     {
@@ -17,11 +17,5 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         {
             _dataModel.IsDead.Value = true;
         }
-    }
-
-    [Inject]
-    public void Inject(PlayerDataModel dataModel)
-    {
-        _dataModel = dataModel;
     }
 }

@@ -6,7 +6,7 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private Vector3 _offset;
     [SerializeField] private float _cameraSpeed;
     [SerializeField] private float _limitDistance;
-    private RayCaster _rayCaster;
+    [Inject] private PlayerInputModel _inputModel;
     private Vector3 _targetPos;
     private Vector3 _direction;
 
@@ -14,28 +14,18 @@ public class PlayerCamera : MonoBehaviour
     private void Update() => MoveCamera();
     private void OnDisable() => UnBindEvents();
 
-    private void TranslateCamera(RaycastHit hit)
+    private void TranslateCamera(Vector3 look)
     {
-        _targetPos = (transform.position + hit.point) * 0.5f + _offset;
-        _direction = hit.point - transform.position;
-        if (Vector3.Distance(hit.point, transform.position) >= _limitDistance)
-        {
-            _targetPos = transform.position + _direction.normalized * _limitDistance + _offset;
-        }
+        _targetPos = (transform.position + look) * 0.5f + _offset;
+        _direction = look - transform.position;
+        if (Vector3.Distance(look, transform.position) >= _limitDistance) _targetPos = transform.position + _direction.normalized * _limitDistance + _offset;
     }
 
     private void MoveCamera()
     {
-        if (_targetPos == default) return;
-        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _targetPos, _cameraSpeed * Time.deltaTime);
+        if (_targetPos != default) Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _targetPos, _cameraSpeed * Time.deltaTime);
     }
 
-    private void BindEvents() => _rayCaster.AddListener(TranslateCamera);
-    private void UnBindEvents() => _rayCaster.RemoveListener(TranslateCamera);
-
-    [Inject]
-    public void Inject(RayCaster rayCaster)
-    {
-        _rayCaster = rayCaster;
-    }
+    private void BindEvents() => _inputModel.LookDirection.AddListener(TranslateCamera);
+    private void UnBindEvents() => _inputModel.LookDirection.RemoveListener(TranslateCamera);
 }

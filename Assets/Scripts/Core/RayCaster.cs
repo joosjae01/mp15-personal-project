@@ -15,7 +15,7 @@ public class RayCaster : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(context.ReadValue<Vector2>());
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, _targetLayer))
+        if(Physics.Raycast(ray, out hit, Mathf.Infinity, _targetLayer))
         {
             _onRayhitted?.Invoke(hit);
         }
@@ -23,7 +23,7 @@ public class RayCaster : MonoBehaviour
 
     public void AddListener(Action<RaycastHit> action) => _onRayhitted += action;
     public void RemoveListener(Action<RaycastHit> action) => _onRayhitted -= action;
-    private void RemoveAllLister() => _onRayhitted = null;
+    private void RemoveAllListeners() => _onRayhitted = null;
 
     private void BindEvents()
     {
@@ -35,6 +35,6 @@ public class RayCaster : MonoBehaviour
     {
         _aimInput.action.Disable();
         _aimInput.action.performed -= ShotRay;
-        RemoveAllLister();
+        RemoveAllListeners();
     }
 }

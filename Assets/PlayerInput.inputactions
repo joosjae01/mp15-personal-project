@@ -16,7 +16,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PlayerAim",
+                    "name": "PlayerLook",
                     "type": "Value",
                     "id": "7f59043b-0692-49a0-9965-2b7cf648ecbc",
                     "expectedControlType": "Vector2",
@@ -25,7 +25,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PlayerAttack",
+                    "name": "PlayerFire",
                     "type": "Button",
                     "id": "1a9707b2-2777-49c6-bf74-2bae7759402f",
                     "expectedControlType": "",
@@ -44,9 +44,18 @@
                 },
                 {
                     "name": "PlayerSwap",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "da59b3f1-1aaf-4614-b8f0-d7068c534f9b",
                     "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PlayerCommand",
+                    "type": "Button",
+                    "id": "7e53eb1a-87dc-4631-92d4-a92da6fa74f0",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -111,11 +120,11 @@
                 {
                     "name": "",
                     "id": "a1dfedf4-4739-4ab6-8a94-ede6fc0c0fc2",
-                    "path": "<Mouse>/{Point}",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PlayerAim",
+                    "action": "PlayerLook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -126,7 +135,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PlayerAttack",
+                    "action": "PlayerFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -144,7 +153,7 @@
                 {
                     "name": "",
                     "id": "c9d67682-e28b-455d-9178-4300c5639e7f",
-                    "path": "<Mouse>/scroll/up",
+                    "path": "<Mouse>/scroll/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -154,12 +163,12 @@
                 },
                 {
                     "name": "",
-                    "id": "2b6d7812-cade-49a8-98b2-a0c7daf26570",
-                    "path": "<Mouse>/scroll/down",
+                    "id": "e121b1c8-9fc1-4ade-8fc7-a0937a14565f",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PlayerSwap",
+                    "action": "PlayerCommand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -168,8 +177,94 @@
         {
             "name": "StratagemMove",
             "id": "7f7e55fa-a567-4797-81cb-d0ea86ecd7de",
-            "actions": [],
-            "bindings": []
+            "actions": [
+                {
+                    "name": "Command",
+                    "type": "Value",
+                    "id": "b479be81-9ed6-4e18-a952-e1b926c86e04",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "d6c39416-79de-4348-a6e4-555eb8056e44",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "3fd0efca-e991-4300-95f3-f8eedd435580",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Command",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "2ecaa5dd-c9e3-41c3-a175-fbdc4a3f6b01",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";New Control Scheme",
+                    "action": "Command",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "87a550d2-7a77-43a6-bd2e-8ba889711fe2",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";New Control Scheme",
+                    "action": "Command",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "eef42130-d8d9-4884-a934-8bb33be15014",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";New Control Scheme",
+                    "action": "Command",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "aee847c3-a7b0-4062-ae7f-26c65044feaa",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Command",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e91fa3c8-a22c-402c-9ef8-2f6ca5641f2f",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

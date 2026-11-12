@@ -1,46 +1,29 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using VContainer;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private InputActionReference _moveInput;
-    private PlayerDataModel _dataModel;
-    private ISoundService _soundManager;
+    [Inject] private PlayerDataModel _dataModel;
+    [Inject] private PlayerInputModel _inputModel;
+
     private Vector3 _direction;
 
-    private void OnEnable() => BindEvent();
-    private void Update() => Move();
-    private void OnDisable() => UnBindEvent();
+    private void OnEnable() => BindEvents();
+    private void Update()
+    {
+        if (_inputModel.IsMoving.Value) Move();
+    }
+    private void OnDisable() => UnBindEvents();
 
-    private void StartMove(InputAction.CallbackContext context) => _direction = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
-    private void StopMove(InputAction.CallbackContext context) => _direction = Vector3.zero;
+    private void GetDirection(Vector2 moveInput) => _direction = new(moveInput.x, 0.0f, moveInput.y);
     private void Move() => transform.Translate(_direction.normalized * _dataModel.MoveSpeed * Time.deltaTime, Space.World);
-    private void StartSound(InputAction.CallbackContext context) => _soundManager.PlaySound(SoundEffectType.PlayerWalking);
-    private void StopSound(InputAction.CallbackContext context) => _soundManager.PauseSound(SoundEffectType.PlayerWalking);
 
-    [Inject]
-    public void Inject(PlayerDataModel dataModel, ISoundService soundManager)
+    private void BindEvents()
     {
-        _dataModel = dataModel;
-        _soundManager = soundManager;
+        _inputModel.MoveDirection.AddListener(GetDirection);
     }
-
-    private void BindEvent()
+    private void UnBindEvents()
     {
-        _moveInput.action.Enable();
-        _moveInput.action.started += StartSound;
-        _moveInput.action.performed += StartMove;
-        _moveInput.action.canceled += StopMove;
-        _moveInput.action.canceled += StopSound;
-    }
-
-    private void UnBindEvent()
-    {
-        _moveInput.action.started -= StartSound;
-        _moveInput.action.performed -= StartMove;
-        _moveInput.action.canceled -= StopMove;
-        _moveInput.action.canceled -= StopSound;
-        _moveInput.action.Disable();
+        _inputModel.MoveDirection.RemoveListener(GetDirection);
     }
 }

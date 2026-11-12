@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87479fdc216ddd44cb181201ad6254b6, type: 3}
+  m_Name: KBM_Stratagem
+  m_EditorClassIdentifier: Assembly-CSharp::StratagemInputAction
+  Command: {fileID: -6292483458343600377, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}
+  Quit: {fileID: 9141363844205284977, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}

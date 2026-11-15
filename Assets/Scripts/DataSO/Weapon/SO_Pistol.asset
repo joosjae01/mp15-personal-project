@@ -12,10 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2cdeeb78f1f424c9bd82a24cdcefd8, type: 3}
   m_Name: SO_Pistol
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  Name: Pistol
   Prefab: {fileID: 0}
+  Icon: {fileID: 0}
   SoundEffect: {fileID: 0}
+  AnimationList:
+  - Type: 0
+    Animation: {fileID: 0}
+  - Type: 1
+    Animation: {fileID: 0}
+  - Type: 2
+    Animation: {fileID: 0}
+  - Type: 0
+    Animation: {fileID: 0}
   Power: 0
-  FireRate: 0
+  FireRate: 2
   Stability: 0
-  MaxMagazine: 0
+  MaxMagazine: 50
   Range: 0

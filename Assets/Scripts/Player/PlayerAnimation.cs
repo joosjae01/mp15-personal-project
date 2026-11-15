@@ -6,6 +6,7 @@ public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [Inject] private PlayerInputModel _playerInput;
+    [Inject] private WeaponInputModel _weaponInput;
 
     private void OnEnable() => BindEvents();
     private void OnDisable() => UnBindEvents();
@@ -17,16 +18,19 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     private void Fire(bool onFire) => _animator.SetBool("IsAttacking", onFire);
+    private void Reload(bool onReload) => _animator.SetBool("IsReloading", onReload);
 
     private void BindEvents()
     {
         _playerInput.IsMoving.AddListener(Move);
-        //_inputModel.IsFire.AddListener(Fire);
+        _weaponInput.IsFired.AddListener(Fire);
+        _weaponInput.IsReload.AddListener(Reload);
     }
 
     private void UnBindEvents()
     {
         _playerInput.IsMoving.RemoveListener(Move);
-        //_inputModel.IsFire.AddListener(Fire);
+        _weaponInput.IsFired.AddListener(Fire);
+        _weaponInput.IsReload.AddListener(Reload);
     }
 }

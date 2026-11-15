@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7044b560143738c4f89a0bce4dc1b54e, type: 3}
+  m_Name: SO_TEST_WeaponList
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSlot
+  WeaponContext:
+  - Type: 0
+    DataSO: {fileID: 11400000, guid: ea689935acc678c4faf7ad4f6c76a169, type: 2}
+  - Type: 1
+    DataSO: {fileID: 11400000, guid: 61f0aa62761b71042b6c667a6f976038, type: 2}
+  - Type: 2
+    DataSO: {fileID: 11400000, guid: 9a5cfeda30531ee4e9d8738e708b184f, type: 2}

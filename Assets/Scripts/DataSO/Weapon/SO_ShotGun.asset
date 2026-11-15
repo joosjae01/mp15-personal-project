@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2cdeeb78f1f424c9bd82a24cdcefd8, type: 3}
   m_Name: SO_ShotGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  Name: Shotgun
   Prefab: {fileID: 0}
+  Icon: {fileID: 0}
   SoundEffect: {fileID: 0}
+  AnimationList: []
   Power: 0
-  FireRate: 0
+  FireRate: 1
   Stability: 0
-  MaxMagazine: 0
+  MaxMagazine: 30
   Range: 0

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class WeaponInputModel
 {
     public ObservableProperty<float> SwapValue;
@@ -8,6 +6,7 @@ public class WeaponInputModel
 
     public WeaponInputModel()
     {
+        SwapValue = new(0.0f);
         IsFired = new(false);
         IsReload = new(false);
     }

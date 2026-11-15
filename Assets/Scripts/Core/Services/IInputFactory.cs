@@ -1,5 +1,6 @@
+using System.Collections.Generic;
+
 public interface IInputFactory
 {
-    public IInputHandler CreateKeyboard(InputType type);
-    public IInputHandler CreateGamePad(InputType type);
+    public List<IInputHandler> Create(InputContext context);
 }

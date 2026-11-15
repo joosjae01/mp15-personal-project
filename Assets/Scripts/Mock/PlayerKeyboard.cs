@@ -9,13 +9,13 @@ public class PlayerKeyboard : IInputHandler
     private InputActionReference _commandInput;
     private LayerMask _targetLayer;
 
-    public PlayerKeyboard(BasicInputAction dataSO, PlayerInputModel inputModel, LayerMask targetLayer)
+    public PlayerKeyboard(BasicInputAction dataSO, PlayerInputModel inputModel)
     {
         _inputModel = inputModel;
         _moveInput = dataSO.Move;
         _lookInput = dataSO.Look;
         _commandInput = dataSO.Stratagem;
-        _targetLayer = targetLayer;
+        _targetLayer = LayerMask.GetMask("Ground");
     }
 
     private void GetMoveInput(InputAction.CallbackContext context) => _inputModel.MoveDirection.Value = context.ReadValue<Vector2>();

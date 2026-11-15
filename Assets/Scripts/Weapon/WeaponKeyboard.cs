@@ -8,6 +8,8 @@ public class WeaponKeyboard : IInputHandler
     private InputActionReference _swapInput;
     private InputActionReference _reloadInput;
 
+    public InputType Type => InputType.Combat;
+
     public WeaponKeyboard(BasicInputAction dataSO, WeaponInputModel inputModel)
     {
         _inputModel = inputModel;

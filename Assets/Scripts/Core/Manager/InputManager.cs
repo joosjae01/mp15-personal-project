@@ -5,25 +5,38 @@ using VContainer;
 public class InputManager : MonoBehaviour, IInputManager
 {
     [SerializeField] private List<InputContext> _inputContext;
-    private IInputFactory _inputFactory;
-    private Dictionary<InputType, List<IInputHandler>> _inputHandlerDict = new();
+    private Dictionary<InputDevice, List<IInputHandler>> _inputHandlerDict = new();
+    private InputDevice _device;
     
     [Inject]
     public void Inject(IInputFactory factory)
     {
-        _inputFactory = factory;
-        foreach(InputContext context in _inputContext) _inputHandlerDict[context.Type] = _inputFactory.Create(context);
-        ConnectDevice(InputType.KBM);
+        foreach(InputContext context in _inputContext) _inputHandlerDict[context.Device] = factory.Create(context);
+        ConnectDevice(InputDevice.KBM);
     }
 
-    public void ActiveStratagem(InputType type)
+    public void ActiveStratagem(bool active)
     {
-
+        foreach(IInputHandler handler in _inputHandlerDict[_device])
+        {
+            if(handler.Type == InputType.Stratagem)
+            {
+                if (active) handler.Enable();
+                else handler.Disable();
+            }
+            else
+            {
+                if (active) handler.Disable();
+                else handler.Enable();
+            }
+        }
     }
 
-    public void ConnectDevice(InputType type)
+    public void ConnectDevice(InputDevice device)
     {
-        if (!_inputHandlerDict.ContainsKey(type)) return;
-        foreach(IInputHandler handler in _inputHandlerDict[type]) handler.Enable();
+        if (!_inputHandlerDict.ContainsKey(device)) return;
+        foreach(IInputHandler handler in _inputHandlerDict[_device]) handler.Disable();
+        _device = device;
+        ActiveStratagem(false);
     }
 }

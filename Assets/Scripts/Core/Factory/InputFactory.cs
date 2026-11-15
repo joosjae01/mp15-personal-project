@@ -11,7 +11,7 @@ public class InputFactory : IInputFactory
     public List<IInputHandler> Create(InputContext context)
     {
         List<IInputHandler> temp = new();
-        if (context.Type == InputType.KBM)
+        if (context.Device == InputDevice.KBM)
         {
             temp.Add(new PlayerKeyboard(context.Basic, _playerInputModel));
             temp.Add(new WeaponKeyboard(context.Basic, _weaponInputModel));
@@ -20,7 +20,7 @@ public class InputFactory : IInputFactory
             return temp;
         }
 
-        if(context.Type == InputType.GamePad)
+        if(context.Device == InputDevice.GamePad)
         {
             //TODO : 게임 패드 로직
             return temp;

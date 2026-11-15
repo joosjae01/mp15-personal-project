@@ -2,6 +2,6 @@ using UnityEngine.InputSystem;
 
 public interface IInputManager
 {
-    public void ConnectDevice(InputType type);
-    public void ActiveStratagem(InputType type);
+    public void ConnectDevice(InputDevice device);
+    public void ActiveStratagem(bool active);
 }

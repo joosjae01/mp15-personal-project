@@ -8,6 +8,8 @@ public class StratagemKeyboard : IInputHandler
 
     private StratagemInputModel _inputModel;
 
+    public InputType Type => InputType.Stratagem;
+
     public StratagemKeyboard(StratagemInputAction dataSO, StratagemInputModel inputModel)
     {
         _commandInput = dataSO.Command;

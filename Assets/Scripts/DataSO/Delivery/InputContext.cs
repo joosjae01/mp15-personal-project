@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public struct InputContext
 {
-    public InputType Type;
+    public InputDevice Device;
     public BasicInputAction Basic;
     public StratagemInputAction Stratagem;
 }

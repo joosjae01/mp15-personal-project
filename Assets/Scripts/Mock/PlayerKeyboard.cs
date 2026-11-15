@@ -9,6 +9,8 @@ public class PlayerKeyboard : IInputHandler
     private InputActionReference _commandInput;
     private LayerMask _targetLayer;
 
+    public InputType Type => InputType.Combat;
+
     public PlayerKeyboard(BasicInputAction dataSO, PlayerInputModel inputModel)
     {
         _inputModel = inputModel;

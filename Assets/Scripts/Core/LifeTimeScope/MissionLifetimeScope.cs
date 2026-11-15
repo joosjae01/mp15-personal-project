@@ -24,9 +24,15 @@ public class MissionLifetimeScope : LifetimeScope
         builder.Register<PlayerInputModel>(Lifetime.Scoped);
         builder.Register<WeaponInputModel>(Lifetime.Scoped);
         builder.Register<StratagemInputModel>(Lifetime.Scoped);
-        
+
+        //Manager
         builder.RegisterComponentInHierarchy<InputManager>();
+
+        //Weapon
         builder.RegisterComponentInHierarchy<WeaponController>();
+        builder.RegisterComponentInHierarchy<WeaponFire>();
+        
+        //Player
         builder.RegisterComponentInHierarchy<PlayerRotate>();
         builder.RegisterComponentInHierarchy<PlayerCamera>();
         builder.RegisterComponentInHierarchy<PlayerHealth>();

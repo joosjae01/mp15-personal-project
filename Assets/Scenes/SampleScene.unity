@@ -603,6 +603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 911775621}
   - component: {fileID: 911775620}
+  - component: {fileID: 911775622}
   m_Layer: 0
   m_Name: WeaponController
   m_TagString: Untagged
@@ -622,6 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cb9be471180aa45a99ee4fc8946a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
+  _weaponFire: {fileID: 911775622}
 --- !u!4 &911775621
 Transform:
   m_ObjectHideFlags: 0
@@ -637,6 +639,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &911775622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911775619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74cc75cdc75c3dc4183501322a3cd748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponFire
 --- !u!1 &1399192897
 GameObject:
   m_ObjectHideFlags: 0

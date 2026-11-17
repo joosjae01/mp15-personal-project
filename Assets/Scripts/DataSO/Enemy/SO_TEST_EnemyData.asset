@@ -15,10 +15,10 @@ MonoBehaviour:
   MaxHealth: 100
   Shield: 50
   MoveSpeed: 4.5
-  AttackDelay: 0.5
+  AttackDelay: 2
   AttackValue: 5
-  AttackRange: 10
+  AttackRange: 2
   DetectRange: 15
-  MinRange: 5
-  RunDistance: 3
-  CoolDown: 2
+  MinRange: 0
+  RunDistance: 0
+  CoolDown: 3

@@ -1,4 +1,5 @@
 using Unity.Behavior;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyBoardController : BlackBoardController
@@ -8,6 +9,7 @@ public class EnemyBoardController : BlackBoardController
     private EnemyDataModel _dataModel;
     private NavMeshAgent _navMeshAgent;
     private EnemyAttackBase _attackBase;
+    private Animator _animator;
     
     public EnemyBoardController(EnemyDataModel dataModel, EnemyAttackBase attackBase, PlayerController playerController, EnemyController enemyController)
     {
@@ -17,6 +19,7 @@ public class EnemyBoardController : BlackBoardController
         _enemyController = enemyController;
         _navMeshAgent = enemyController.NavMeshAgent;
         _agent = enemyController.BehaviorAgent;
+        _animator = enemyController.Animator;
         SetBoard();
     }
 
@@ -29,10 +32,11 @@ public class EnemyBoardController : BlackBoardController
         _agent.SetVariableValue<float>("AttackDelay", _dataModel.AttackDelay);
         _agent.SetVariableValue<float>("MoveSpeed", _dataModel.MoveSpeed);
         _agent.SetVariableValue<float>("RunDistance", _dataModel.RunDistance);
-        
+
         _agent.SetVariableValue<PlayerController>("PlayerController", _playerController);
         _agent.SetVariableValue<EnemyAttackBase>("AttackBase", _attackBase);
         _agent.SetVariableValue<EnemyController>("EnemyController", _enemyController);
         _agent.SetVariableValue<NavMeshAgent>("NavMeshAgent", _navMeshAgent);
+        _agent.SetVariableValue<Animator>("Animator", _animator);
     }
 }

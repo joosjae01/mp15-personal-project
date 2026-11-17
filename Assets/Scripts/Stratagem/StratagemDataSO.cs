@@ -6,6 +6,7 @@ public class StratagemDataSO : ScriptableObject
 {
     public string Name;
     public string Desc;
+    public float CoolDown;
     public Sprite Icon;
     public StratagemType Type;
     public List<Command> Command;

@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     [field : SerializeField] public BehaviorGraphAgent BehaviorAgent { get; private set; }
     [field : SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
+    [field : SerializeField] public Animator Animator { get; private set; }
     [SerializeField] private EnemyDataSO _dataSO;
     [SerializeField] private EnemyAttackBase _attackSO;
     

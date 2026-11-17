@@ -3,11 +3,10 @@ using VContainer;
 
 public class PlayerController : MonoBehaviour
 {
-    [Inject] private PlayerAnimation _playerAnimation;
-    [Inject] private PlayerMovement _playerMovement;
-    [Inject] private PlayerCamera _playerCamera;
-    [Inject] private PlayerRotate _playerRotate;
-
-    [Inject] private PlayerDataModel _dataModel;
-    [Inject] private PlayerHealth _playerHealth;
+    [Inject] public PlayerAnimation Animation { get; private set; }
+    [Inject] public PlayerMovement Movement { get; private set; }
+    [Inject] public PlayerCamera Camera { get; private set; }
+    [Inject] public PlayerRotate Rotation { get; private set; }
+    [Inject] public PlayerDataModel DataModel { get; private set; }
+    [Inject] public PlayerHealth Health { get; private set; }
 }

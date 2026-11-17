@@ -13,11 +13,14 @@ public partial class StopNavAction : Action
 
     protected override Status OnStart()
     {
+        Agent.Value.isStopped = true;
+        Agent.Value.velocity = Vector3.zero;
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
+        
         return Status.Success;
     }
 

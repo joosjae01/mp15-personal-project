@@ -1,16 +1,27 @@
+using Unity.Behavior;
 using UnityEngine;
+using UnityEngine.AI;
+using VContainer;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [field : SerializeField] public BehaviorGraphAgent BehaviorAgent { get; private set; }
+    [field : SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
+    [SerializeField] private EnemyDataSO _dataSO;
+    [SerializeField] private EnemyAttackBase _attackSO;
+    
+    public PlayerController PlayerController { get; private set; }    
+    public EnemyDataModel DataModel { get; private set; }
+    public EnemyHealth EnemyHealth { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    private EnemyBoardController _boardController;
+
+    [Inject]
+    public void Inject(PlayerController playerController)
     {
-        
+        DataModel = new(_dataSO);
+        EnemyHealth = new(this, DataModel);
+        PlayerController = playerController;
+        _boardController = new EnemyBoardController(DataModel, _attackSO, playerController, this);
     }
 }

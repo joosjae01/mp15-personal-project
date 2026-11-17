@@ -18,7 +18,7 @@ public partial class UpdateNavMeshAction : Action
 
     protected override Status OnUpdate()
     {
-        NavMeshAgent.Value.SetDestination(Player.Value.transform.position);
+        NavMeshAgent.Value.SetDestination(Player.Value.transform.position);     
         return Status.Success;
     }
 

@@ -10,12 +10,11 @@ public class PlayerRotate : MonoBehaviour
     public void Inject(PlayerInputModel inputModel) => _inputModel = inputModel;
 
     private void OnEnable() => BindEvents();
-    private void Update() => transform.LookAt(_look);
     private void OnDisable() => UnBindEvents();
 
     private void Look(Vector3 lookInput)
     {
-        _look = lookInput;
+        transform.LookAt(lookInput);
     }
 
     private void BindEvents() => _inputModel.LookDirection.AddListener(Look);

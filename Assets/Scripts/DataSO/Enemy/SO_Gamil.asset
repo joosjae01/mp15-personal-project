@@ -19,6 +19,6 @@ MonoBehaviour:
   AttackValue: 0
   AttackRange: 12
   DetectRange: 15
-  MinRange: 10
-  RunDistance: 10
+  MinRange: 8
+  RunDistance: 6
   CoolDown: 0.5

@@ -20,6 +20,8 @@ public partial class StartNavAction : Action
             Agent.Value.speed = MoveSpeed;
             Agent.Value.updateRotation = false;
         }
+
+        Agent.Value.SetDestination(Player.Value.transform.position);
         return Status.Running;
     }
 

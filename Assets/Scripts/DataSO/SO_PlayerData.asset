@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SO_PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataSO
   <MaxHealth>k__BackingField: 100
-  <MoveSpeed>k__BackingField: 5
+  <MoveSpeed>k__BackingField: 8

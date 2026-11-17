@@ -10,6 +10,9 @@ public class MissionLifetimeScope : LifetimeScope
 
     protected override void Configure(IContainerBuilder builder)
     {
+        //TEST
+        builder.RegisterComponentInHierarchy<EnemyController>();
+
         //SO 
         builder.RegisterInstance(_playerDataSO);
         builder.RegisterInstance(_weaponSlotSO);

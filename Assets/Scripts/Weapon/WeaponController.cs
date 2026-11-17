@@ -28,4 +28,9 @@ public class WeaponController : MonoBehaviour
         _swap = new(inputModel, _slot);
         _weaponFire.SetWeapon(_slot);
     }
+
+    public WeaponSlot GetWeaponSlot()
+    {
+        return _slot;
+    }
 }

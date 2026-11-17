@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7d7cb3bb3caff4ab3685f4bfae6921, type: 3}
+  m_Name: SO_TEST_StratagemList
+  m_EditorClassIdentifier: Assembly-CSharp::StratagemSlotSO
+  StratagemData:
+  - {fileID: 11400000, guid: 0b1e825735d15ea45adaa48567718a9a, type: 2}
+  - {fileID: 11400000, guid: abe375e6a3bfc7841945abf2edaa2f54, type: 2}
+  - {fileID: 11400000, guid: 5276fa0153ee95c4184196042f4eb029, type: 2}

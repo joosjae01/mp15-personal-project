@@ -1,10 +1,16 @@
 using UnityEngine;
 using VContainer;
 
-public class PlayerHealth : MonoBehaviour, IDamageable
+public class PlayerHealth : IDamageable
 {
-    [Inject] private PlayerDataModel _dataModel;
+    private PlayerDataModel _dataModel;
 
+    [Inject]
+    public PlayerHealth(PlayerDataModel dataModel)
+    {
+        _dataModel = dataModel;
+    }
+    
     public void TakeDamage(float damage)
     {
         if (_dataModel.IsDead.Value) return;

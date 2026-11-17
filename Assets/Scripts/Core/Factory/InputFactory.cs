@@ -7,15 +7,17 @@ public class InputFactory : IInputFactory
     [Inject] private PlayerInputModel _playerInputModel;
     [Inject] private WeaponInputModel _weaponInputModel;
     [Inject] private StratagemInputModel _strataInputModel;
+    [Inject] private SwitchInputModel _switchInputModel;
 
     public List<IInputHandler> Create(InputContext context)
     {
         List<IInputHandler> temp = new();
         if (context.Device == InputDevice.KBM)
         {
-            temp.Add(new PlayerKeyboard(context.Basic, _playerInputModel));
-            temp.Add(new WeaponKeyboard(context.Basic, _weaponInputModel));
-            temp.Add(new StratagemKeyboard(context.Stratagem, _strataInputModel));
+            temp.Add(new PlayerKBM(context.Basic, _playerInputModel));
+            temp.Add(new WeaponKBM(context.Basic, _weaponInputModel));
+            temp.Add(new SwitchKBM(context.Switch, _switchInputModel));
+            temp.Add(new StratagemKBM(context.Stratagem, _strataInputModel));
 
             return temp;
         }

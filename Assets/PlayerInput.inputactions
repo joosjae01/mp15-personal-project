@@ -50,15 +50,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "PlayerCommand",
-                    "type": "Button",
-                    "id": "7e53eb1a-87dc-4631-92d4-a92da6fa74f0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -160,17 +151,6 @@
                     "action": "PlayerSwap",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e121b1c8-9fc1-4ade-8fc7-a0937a14565f",
-                    "path": "<Keyboard>/leftCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PlayerCommand",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -186,15 +166,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Quit",
-                    "type": "Button",
-                    "id": "d6c39416-79de-4348-a6e4-555eb8056e44",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -252,15 +223,32 @@
                     "action": "Command",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
+                }
+            ]
+        },
+        {
+            "name": "SwitchMove",
+            "id": "997f2245-bea6-4f42-a949-ef30b91e6ff9",
+            "actions": [
+                {
+                    "name": "Command",
+                    "type": "Button",
+                    "id": "a08b3b69-4a85-4c36-872f-73e6584af858",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "e91fa3c8-a22c-402c-9ef8-2f6ca5641f2f",
+                    "id": "7aae0c49-c0d1-4022-a883-74bf04f6d3fd",
                     "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Quit",
+                    "action": "Command",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

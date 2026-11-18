@@ -11,6 +11,10 @@ public class MissionLifetimeScope : LifetimeScope
 
     protected override void Configure(IContainerBuilder builder)
     {
+        //GameService
+        builder.Register<IPauseService, PauseService>(Lifetime.Singleton);
+        builder.Register<ISoundService, SoundService>(Lifetime.Singleton);
+
         //SO 
         builder.RegisterInstance(_playerDataSO);
         builder.RegisterInstance(_weaponSlotSO);

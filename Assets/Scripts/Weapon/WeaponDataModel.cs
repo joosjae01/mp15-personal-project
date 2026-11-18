@@ -2,6 +2,7 @@ public class WeaponDataModel
 {
     public ObservableProperty<int> CurrentMagazine = new(0);
     public ObservableProperty<int> MaxMagazine = new(0);
+    public SoundDataSO SFX {get; private set;}
     public float Power { get; private set; }
     public float CoolDown { get; private set; }
     public float FireRate { get; private set; }
@@ -18,5 +19,6 @@ public class WeaponDataModel
         Stability = dataSO.Stability;
         Range = dataSO.Range;
         CoolDown = 1 / FireRate;
+        SFX = dataSO.SFX;
     }
 }

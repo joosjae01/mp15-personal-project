@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SO_ShotGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   Name: Shotgun
-  Prefab: {fileID: 0}
-  Icon: {fileID: 0}
-  SoundEffect: {fileID: 0}
   AnimationList: []
+  Prefab: {fileID: 0}
+  SFX: {fileID: 11400000, guid: a7d851dbb20f4f748881266d084ad4e6, type: 2}
+  Icon: {fileID: 0}
   Power: 0
   FireRate: 1
   Stability: 0

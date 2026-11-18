@@ -4,13 +4,16 @@ using VContainer;
 
 public class MissionController : MonoBehaviour
 {
+    [SerializeField] private SoundDataSO _bgm;
     public MissionDataModel DataModel { get; private set; }
     private Queue<ITarget> _targetQueue = new();
     private ITarget _currentTarget;
+    private ISoundService _soundService;
     
     [Inject]
-    public void Inject(MissionDataSO dataSO, ITargetFactory factory)
+    public void Inject(MissionDataSO dataSO, ITargetFactory factory, ISoundService soundService)
     {
+        _soundService = soundService;
         _targetQueue = factory.Create(dataSO.TargetContextList);
         DataModel = new MissionDataModel(dataSO);
 
@@ -19,6 +22,7 @@ public class MissionController : MonoBehaviour
 
     private void InitTarget()
     {
+        _soundService.PlayBGM(_bgm);
         _currentTarget = _targetQueue.Dequeue();
         _currentTarget.IsCompleted.AddListener(StartNextTarget);
         _currentTarget.Start();

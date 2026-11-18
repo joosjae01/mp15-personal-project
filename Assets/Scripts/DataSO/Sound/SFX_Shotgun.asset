@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SFX_Shotgun
   m_EditorClassIdentifier: Assembly-CSharp::SoundDataSO
   <IsBGM>k__BackingField: 0
-  Clip: {fileID: 0}
+  Clip: {fileID: 8300000, guid: 6f778b5af7123bf42a9f635de9b4f40f, type: 3}

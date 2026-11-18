@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f3c94f8643b2f4887f59350ad58404, type: 3}
   m_Name: BGM_TEST
   m_EditorClassIdentifier: Assembly-CSharp::SoundDataSO
-  <IsBGM>k__BackingField: 0
-  Clip: {fileID: 0}
+  <IsBGM>k__BackingField: 1
+  Clip: {fileID: 8300000, guid: ded2471807ee61741b09bcf7c5cc18f7, type: 3}

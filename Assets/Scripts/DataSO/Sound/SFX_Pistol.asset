@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f3c94f8643b2f4887f59350ad58404, type: 3}
   m_Name: SFX_Pistol
   m_EditorClassIdentifier: Assembly-CSharp::SoundDataSO
-  Clip: {fileID: 0}
+  <IsBGM>k__BackingField: 0
+  Clip: {fileID: 8300000, guid: 38804670170965c4299d225c716ce2ba, type: 3}

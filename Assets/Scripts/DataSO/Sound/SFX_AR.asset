@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SFX_AR
   m_EditorClassIdentifier: Assembly-CSharp::SoundDataSO
   <IsBGM>k__BackingField: 0
-  Clip: {fileID: 0}
+  Clip: {fileID: 8300000, guid: 4132f001d89c2764795b9dc7bb504083, type: 3}

@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: SO_AussaultRifle
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   Name: Assualt Rifle
-  Prefab: {fileID: 0}
-  Icon: {fileID: 0}
-  SoundEffect: {fileID: 0}
   AnimationList:
   - Type: 0
     Animation: {fileID: 7400000, guid: 1d4365e1541bb6949a273318862b72d3, type: 3}
@@ -25,6 +22,9 @@ MonoBehaviour:
     Animation: {fileID: 7400000, guid: 76a61eccc11250c4da8bd7f1d87fa2fe, type: 3}
   - Type: 3
     Animation: {fileID: 7400000, guid: 45b9c258f262e844e8f5316722fc04c6, type: 3}
+  Prefab: {fileID: 0}
+  SFX: {fileID: 11400000, guid: 882369f4beacd8d4fa99b66b204408b9, type: 2}
+  Icon: {fileID: 0}
   Power: 0
   FireRate: 5
   Stability: 0

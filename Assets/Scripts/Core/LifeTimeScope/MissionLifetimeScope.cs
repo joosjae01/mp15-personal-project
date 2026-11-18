@@ -9,12 +9,14 @@ public class MissionLifetimeScope : LifetimeScope
     [SerializeField] StratagemSlotSO _stratagemSlotSO;
     [SerializeField] MissionDataSO _missionDataSO;
 
+    [SerializeField] private SoundService _soundService;
+
     protected override void Configure(IContainerBuilder builder)
     {
         //GameService
         builder.Register<IPauseService, PauseService>(Lifetime.Singleton);
-        builder.Register<ISoundService, SoundService>(Lifetime.Singleton);
-
+        builder.RegisterComponent(_soundService).As<ISoundService>();
+        
         //SO 
         builder.RegisterInstance(_playerDataSO);
         builder.RegisterInstance(_weaponSlotSO);

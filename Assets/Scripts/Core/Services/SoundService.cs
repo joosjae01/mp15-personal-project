@@ -1,31 +1,23 @@
 using UnityEngine;
 
-public class SoundService : ISoundService
+public class SoundService : MonoBehaviour, ISoundService
 {
-    private AudioSource _audioSource;
-    private AudioSource _bgmSource;
-    private float _sfxVolume;
-    private float _bgmVolume;
-
-    public SoundService()
-    {
-        _audioSource = new();
-        _bgmSource = new();
-        _sfxVolume = 0.5f;
-        _bgmVolume = 0.5f;
-    }
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _bgmSource;
+    [SerializeField] private float _sfxVolume;
+    [SerializeField] private float _bgmVolume;
 
     public void PlayBGM(SoundDataSO dataSO)
     {
-        if (!dataSO.IsBGM || _bgmSource.isPlaying) return;
+        if (!dataSO.IsBGM) return;
+        if (_bgmSource.isPlaying && _bgmSource.clip == dataSO.Clip) return;
         _bgmSource.clip = dataSO.Clip;
         _bgmSource.volume = _bgmVolume;
         _bgmSource.Play();
     }
 
-    public void StopBGM(SoundDataSO dataSO)
+    public void StopBGM()
     {
-        if (!dataSO.IsBGM || !_bgmSource.isPlaying) return;
         _bgmSource.Pause();
     }
 

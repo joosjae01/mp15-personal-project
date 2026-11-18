@@ -4,19 +4,21 @@ using VContainer;
 
 public class WeaponFire : MonoBehaviour
 {
+    [SerializeField] private float _swapDelay;
+
     private WeaponInputModel _inputModel;
+    private WeaponController _controller;
     private WeaponSlot _slot;
     private Coroutine _fireRoutine;
     private Coroutine _reloadRoutine;
     private WaitForSeconds _waitForSwap;
     private IWeapon _currentWeapon => _slot.CurrentWeapon;
 
-    [SerializeField] private float _swapDelay;
     private float _elapsed;
-    private bool _isEmpty => _currentWeapon.Model.CurrentMagazine.Value <= 0;
     private bool _onSwap => _inputModel.OnSwap.Value;
     private bool _onReload => _inputModel.IsReload.Value;
     private bool _isCoolOn => _elapsed >= _currentWeapon.Model.CoolDown;
+    private bool _isEmpty => _currentWeapon.Model.CurrentMagazine.Value <= 0;
     private bool _canFire => _isCoolOn && !_isEmpty && !_onSwap && !_onReload;
 
     private void OnEnable() => BindEvents();
@@ -25,9 +27,10 @@ public class WeaponFire : MonoBehaviour
     private void OnDisable() => UnBindEvents();
 
     [Inject]
-    public void Inject(WeaponInputModel inputModel)
+    public void Inject(WeaponInputModel inputModel, WeaponController controller)
     {
         _inputModel = inputModel;
+        _controller = controller;
         _inputModel.CurrentWeapon.Value = _slot.CurrentWeapon.Model.AnimIndex;
     }
 
@@ -53,7 +56,7 @@ public class WeaponFire : MonoBehaviour
         {
             if (_canFire)
             {
-                _currentWeapon.Fire();
+                _currentWeapon.Fire(_controller);
                 _elapsed = 0.0f;
             }
             yield return null;

@@ -45,7 +45,6 @@ public class EnemySpawner : MonoBehaviour, ISpawner
             {
                 _spawnTable[dataSO.Weight].Add(dataSO);
             }
-            
         }
     }
 

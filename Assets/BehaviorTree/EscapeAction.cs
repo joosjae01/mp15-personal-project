@@ -18,7 +18,7 @@ public partial class EscapeAction : Action
     {
         Vector3 runPoint = (Enemy.Value.transform.position - Player.Value.transform.position) * Distance;
         Enemy.Value.transform.LookAt(runPoint);
-        Agent.Value.speed = MoveSpeed * 3.0f;
+        Agent.Value.speed = MoveSpeed * 5.0f;
         Agent.Value.isStopped = false;
         Agent.Value.SetDestination(runPoint);
         return Status.Running;

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a30002a67257314d9a9c43622661ce6, type: 3}
+  m_Name: SO_TEST_MissionData
+  m_EditorClassIdentifier: Assembly-CSharp::MissionDataSO
+  Name: 
+  Desc: 
+  TargetContextList:
+  - Name: "\uC12C\uBA78"
+    Desc: "\uC801\uC744 \uCC98\uCE58\uD558\uB77C"
+    Type: 0
+    IntParameter: 60
+  - Name: "\uD0C8\uCD9C"
+    Desc: "\uC81C\uD55C \uC2DC\uAC04 \uC774\uB0B4\uC5D0 \uD0C8\uCD9C\uD558\uB77C"
+    Type: 1
+    IntParameter: 0

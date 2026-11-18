@@ -7,16 +7,15 @@ public class MissionLifetimeScope : LifetimeScope
     [SerializeField] PlayerDataSO _playerDataSO;
     [SerializeField] WeaponSlotSO _weaponSlotSO;
     [SerializeField] StratagemSlotSO _stratagemSlotSO;
+    [SerializeField] MissionDataSO _missionDataSO;
 
     protected override void Configure(IContainerBuilder builder)
     {
-        //TEST
-        builder.RegisterComponentInHierarchy<EnemyController>();
-
         //SO 
         builder.RegisterInstance(_playerDataSO);
         builder.RegisterInstance(_weaponSlotSO);
         builder.RegisterInstance(_stratagemSlotSO);
+        builder.RegisterInstance(_missionDataSO);
 
         //DataModel
         builder.Register<PlayerDataModel>(Lifetime.Scoped);
@@ -25,6 +24,7 @@ public class MissionLifetimeScope : LifetimeScope
         builder.Register<IInputFactory, InputFactory>(Lifetime.Scoped);
         builder.Register<IWeaponFactory, WeaponFactory>(Lifetime.Scoped);
         builder.Register<IStratagemFactory, StratagemFactory>(Lifetime.Scoped);
+        builder.Register<ITargetFactory, TargetFactory>(Lifetime.Scoped);
 
         //InputModel
         builder.Register<PlayerInputModel>(Lifetime.Scoped);
@@ -52,7 +52,13 @@ public class MissionLifetimeScope : LifetimeScope
         builder.RegisterComponentInHierarchy<PlayerAnimation>();
         builder.RegisterComponentInHierarchy<PlayerController>();
 
+        //Enemy
+        builder.RegisterComponentInHierarchy<EnemySpawner>();
+
         //Stratagem
         builder.RegisterComponentInHierarchy<StratagemController>();
+
+        //Mission
+        builder.RegisterComponentInHierarchy<MissionController>();
     }
 }

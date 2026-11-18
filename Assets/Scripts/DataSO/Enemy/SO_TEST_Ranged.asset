@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5fff3f3cc1650e488ec2e2f93443eb4, type: 3}
-  m_Name: SO_Gamil
+  m_Name: SO_TEST_Ranged
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataSO
   MaxHealth: 80
   Shield: 0
-  MoveSpeed: 3
+  MoveSpeed: 8
   AttackDelay: 2
   AttackValue: 0
   AttackRange: 12
   DetectRange: 15
   MinRange: 8
-  RunDistance: 6
+  RunDistance: 3
   CoolDown: 0.5

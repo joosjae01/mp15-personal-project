@@ -33,7 +33,6 @@ public class StratagemFactory : IStratagemFactory
             }
 
             dict.TryAdd(dataSO, node);
-            Debug.Log($"{dataSO.Name} : 생성");
         }
         return dict;
     }

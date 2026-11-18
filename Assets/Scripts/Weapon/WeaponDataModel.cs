@@ -26,8 +26,8 @@ public class WeaponDataModel
 
         ReloadTime = dataSO.ReloadTime;
         Stability = dataSO.Stability;
-        CoolDown = 1 / FireRate;
         FireRate = dataSO.FireRate;
+        CoolDown = 1 / FireRate;
         Power = dataSO.Power;
         Range = dataSO.Range;
 

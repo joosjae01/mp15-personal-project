@@ -18,6 +18,12 @@ public class EnemyHealth : IDamageable
             {
                 _dataModel.Shield.Value = 0;
                 _dataModel.CurrentHealth.Value -= (int)damage - _dataModel.Shield.Value;
+                if(_dataModel.CurrentHealth.Value <= 0)
+                {
+                    _dataModel.IsKilled.Value = true;
+                    _dataModel.IsKilled.RemoveAllListener();
+                    _controller.gameObject.SetActive(false);
+                }
             }
         }
         else

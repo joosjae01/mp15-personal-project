@@ -6,6 +6,7 @@ public class WeaponFire : MonoBehaviour
 {
     [SerializeField] private float _swapDelay;
 
+    private PlayerAnimation _animation;
     private WeaponInputModel _inputModel;
     private WeaponController _controller;
     private WeaponSlot _slot;
@@ -27,11 +28,11 @@ public class WeaponFire : MonoBehaviour
     private void OnDisable() => UnBindEvents();
 
     [Inject]
-    public void Inject(WeaponInputModel inputModel, WeaponController controller)
+    public void Inject(WeaponInputModel inputModel, WeaponController controller, PlayerAnimation animation)
     {
+        _animation = animation;
         _inputModel = inputModel;
         _controller = controller;
-        _inputModel.CurrentWeapon.Value = _slot.CurrentWeapon.Model.AnimIndex;
     }
 
     private void CheckFire(bool onFire)
@@ -49,6 +50,7 @@ public class WeaponFire : MonoBehaviour
         if (_fireRoutine == null) return;
         StopCoroutine(_fireRoutine);
         _fireRoutine = null;
+        _animation.Fire(false);
     }
     private IEnumerator FireRoutine()
     {
@@ -57,6 +59,7 @@ public class WeaponFire : MonoBehaviour
             if (_canFire)
             {
                 _currentWeapon.Fire(_controller);
+                _animation.Fire(true);
                 _elapsed = 0.0f;
             }
             yield return null;
@@ -76,12 +79,14 @@ public class WeaponFire : MonoBehaviour
     private void StartReload()
     {
         if (_reloadRoutine != null) return;
+        _animation.Reload(true);
         _currentWeapon.Model.CurrentReload.Value = 0.0f;
         _reloadRoutine = StartCoroutine(ReloadRoutine());
     }
     private void StopReload()
     {
         if (_reloadRoutine == null) return;
+        _animation.Reload(false);
         StopCoroutine(_reloadRoutine);
         _reloadRoutine = null;
     }
@@ -120,8 +125,10 @@ public class WeaponFire : MonoBehaviour
     private IEnumerator SwapRoutine()
     {
         _inputModel.OnSwap.Value = true;
+        _animation.Swap(true);
         yield return _waitForSwap;
-        _inputModel.CurrentWeapon.Value = _slot.CurrentWeapon.Model.AnimIndex;
+        _animation.ChangeAnimation(_slot.CurrentWeapon.Model.AnimIndex);
+        _animation.Swap(false);
         _inputModel.OnSwap.Value = false;
     }
 

@@ -53,14 +53,12 @@ public class EnemySpawner : MonoBehaviour, ISpawner
     {
         _elapsed = 0;
         int rand = Random.Range(0, 5);
-        Debug.Log($"{name} : 랜덤 값 {rand} 획득");
         int index = -1;
         for(int i = rand; i >= 0; i--)
         {
             if (_spawnTable.ContainsKey(i))
             {
                 index = i;
-                Debug.Log($"{name} : 가장 큰 KEY {i} 탐색 성공");
                 break;
             }
         }

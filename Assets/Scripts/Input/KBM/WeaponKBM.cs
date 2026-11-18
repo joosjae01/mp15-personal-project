@@ -21,7 +21,6 @@ public class WeaponKBM : IInputHandler
     private void StartFire(InputAction.CallbackContext context) => _inputModel.IsFired.Value = true;
     private void StopFire(InputAction.CallbackContext context) => _inputModel.IsFired.Value = false;
     private void StartReload(InputAction.CallbackContext context) => _inputModel.IsReload.Value = true;
-    private void StopReload(InputAction.CallbackContext context) => _inputModel.IsReload.Value = false;
     private void GetsSwapInput(InputAction.CallbackContext context) => _inputModel.SwapValue.Value = context.ReadValue<float>();
 
     public void Enable()
@@ -32,7 +31,6 @@ public class WeaponKBM : IInputHandler
         _fireInput.action.performed += StartFire;
         _fireInput.action.canceled += StopFire;
         _reloadInput.action.performed += StartReload;
-        _reloadInput.action.canceled += StopReload;
         _swapInput.action.performed += GetsSwapInput;
     }
 
@@ -44,7 +42,6 @@ public class WeaponKBM : IInputHandler
         _fireInput.action.performed -= StartFire;
         _fireInput.action.canceled -= StopFire;
         _reloadInput.action.performed -= StartReload;
-        _reloadInput.action.canceled -= StopReload;
         _swapInput.action.performed -= GetsSwapInput;
     }
 }

@@ -1,13 +1,16 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class WeaponSlot
 {
-    public IReadOnlyList<IWeapon> Slot { get; private set; }
+    public List<IWeapon> Slot { get; private set; }
     public IWeapon CurrentWeapon { get => Slot[_index]; }
     private int _index;
 
-    public WeaponSlot(List<IWeapon> weaponSlot) => Slot = weaponSlot;
+    public WeaponSlot(List<IWeapon> weaponSlot)
+    {
+        Slot = weaponSlot;
+    }
+
     public void Prev()
     {
         if(_index > 0) _index--;

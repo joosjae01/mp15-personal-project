@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponDataSO : ScriptableObject
 {
     public string Name;
-    public List<AnimContext> AnimationList;
+    public int AnimationIndex;
     public GameObject Prefab;
     public SoundDataSO SFX;
     public Sprite Icon;
@@ -13,5 +13,7 @@ public class WeaponDataSO : ScriptableObject
     public float FireRate;
     public float Stability;
     public int MaxMagazine;
+    public int AmmoClip;
     public float Range;
+    public float ReloadTime;
 }

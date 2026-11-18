@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface ISoundService
 {
-    public void PlaySound(SoundEffectType type);
-    public void PauseSound(SoundEffectType type);
-    public void ResumeSound(SoundEffectType type);
+    public void PlaySFX(SoundDataSO dataSO);
+    public void PlayBGM(SoundDataSO dataSO);
+    public void StopBGM();
 }

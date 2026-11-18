@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
   _offset: {x: 0, y: 10, z: -4.5}
   _cameraSpeed: 3
-  _limitDistance: 0.5
+  _limitDistance: 5
 --- !u!114 &6608981026294733228
 MonoBehaviour:
   m_ObjectHideFlags: 0

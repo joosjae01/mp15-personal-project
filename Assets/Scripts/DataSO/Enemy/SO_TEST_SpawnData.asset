@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b90bcc885421c40ab30c6c7000bdb4, type: 3}
+  m_Name: SO_TEST_SpawnData
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnDataSO
+  Name: "\uD14C\uC2A4\uD2B8\uBD84\uB300"
+  EnemySquadList:
+  - EnemyPrefab: {fileID: 4976587602771657548, guid: 60fcd3bcc211f884b8aa3f08c147aa11, type: 3}
+    Count: 3
+  - EnemyPrefab: {fileID: 5717399120404681861, guid: 00f94e7d7d711d94b8cfeb9340b5703c, type: 3}
+    Count: 2
+  Weight: 3

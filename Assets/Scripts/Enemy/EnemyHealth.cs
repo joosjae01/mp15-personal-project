@@ -29,6 +29,7 @@ public class EnemyHealth : IDamageable
             else
             {
                 _dataModel.IsKilled.Value = true;
+                _dataModel.IsKilled.RemoveAllListener();
                 _controller.gameObject.SetActive(false);
             }
         }

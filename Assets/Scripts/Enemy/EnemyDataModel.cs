@@ -35,4 +35,20 @@ public class EnemyDataModel
         MinRange = dataSO.MinRange;
         CoolDown = dataSO.CoolDown;
     }
+
+    public void Reset(EnemyDataSO dataSO)
+    {
+        Shield = new(dataSO.Shield);
+        CurrentHealth = new(dataSO.MaxHealth);
+        IsKilled = new(false);
+        MaxHealth = dataSO.MaxHealth;
+        AttackDelay = dataSO.AttackDelay;
+        AttackValue = dataSO.AttackValue;
+        AttackRange = dataSO.AttackRange;
+        DetectRange = dataSO.DetectRange;
+        RunDistance = dataSO.RunDistance;
+        MoveSpeed = dataSO.MoveSpeed;
+        MinRange = dataSO.MinRange;
+        CoolDown = dataSO.CoolDown;
+    }
 }

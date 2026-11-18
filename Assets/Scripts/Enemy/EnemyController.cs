@@ -25,4 +25,6 @@ public class EnemyController : MonoBehaviour
         PlayerController = playerController;
         _boardController = new EnemyBoardController(DataModel, _attackSO, playerController, this);
     }
+
+    public void Reset() => DataModel.Reset(_dataSO);
 }

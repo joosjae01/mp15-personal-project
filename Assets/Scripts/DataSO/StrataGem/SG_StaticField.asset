@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StratagemDataSO
   Name: "\uC804\uAE30\uC7A5 \uBC1C\uC0DD\uAE30"
   Desc: "\uC9C0\uC810\uC5D0 \uAC10\uC18D\uC744 \uBC1C\uC0DD\uC2DC\uD0A8\uB2E4"
+  CoolDown: 0
   Icon: {fileID: 0}
   Type: 0
-  Command: 040000000400000004000000
+  Command: 020000000200000001000000
   Context:
     Caster: {fileID: 0}
     Target: {fileID: 0}

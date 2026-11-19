@@ -38,9 +38,9 @@ public class EnemyDataModel
 
     public void Reset(EnemyDataSO dataSO)
     {
-        Shield = new(dataSO.Shield);
-        CurrentHealth = new(dataSO.MaxHealth);
-        IsKilled = new(false);
+        Shield.Value = dataSO.Shield;
+        CurrentHealth.Value = dataSO.MaxHealth;
+        IsKilled.Value = false;
         MaxHealth = dataSO.MaxHealth;
         AttackDelay = dataSO.AttackDelay;
         AttackValue = dataSO.AttackValue;

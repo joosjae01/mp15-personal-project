@@ -1,5 +1,7 @@
+using UnityEngine;
+
 public interface IPoolService
 {
-    public void Take();
-    public void Push();
+    public IPoolable Take(GameObject prefab);
+    public void Return(IPoolable poolable);
 }

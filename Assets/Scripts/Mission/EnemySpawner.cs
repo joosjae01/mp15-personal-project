@@ -1,12 +1,11 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
-using VContainer.Unity;
 
 public class EnemySpawner : MonoBehaviour, ISpawner
 {
-    [Inject] private IObjectResolver _resolver;
+    [Inject] private IPoolService _poolService;
     [SerializeField] private List<SpawnDataSO> _spawnDataSO;
     [SerializeField] private float _spawnPeriod;
     [SerializeField] private int _maxAmount;
@@ -17,6 +16,7 @@ public class EnemySpawner : MonoBehaviour, ISpawner
 
     private List<EnemyController> _currentEnemies = new();
     private Dictionary<int, List<SpawnDataSO>> _spawnTable = new();
+    private event Action<bool> _OnKilled;
 
     private void Update()
     {
@@ -24,14 +24,21 @@ public class EnemySpawner : MonoBehaviour, ISpawner
         if (_canSpawn) Spawn();
     }
 
-    public void StartSpawn()
+    public void StartSpawn(Action<bool> action)
     {
-        Init();
+        SetTable();
+        _OnKilled = action;
         _isActivated = true;
+        
     }
-    public void StopSpawn() => _isActivated = false;
 
-    private void Init()
+    public void StopSpawn()
+    {
+        _OnKilled = null;
+        _isActivated = false;
+    }
+
+    private void SetTable()
     {
         foreach(SpawnDataSO dataSO in _spawnDataSO)
         {
@@ -39,21 +46,40 @@ public class EnemySpawner : MonoBehaviour, ISpawner
             {
                 List<SpawnDataSO> tempList = new();
                 _spawnTable[dataSO.Weight] = tempList;
-                _spawnTable[dataSO.Weight].Add(dataSO);
             }
-            else
-            {
-                _spawnTable[dataSO.Weight].Add(dataSO);
-            }
+
+            _spawnTable[dataSO.Weight].Add(dataSO);
         }
     }
 
     private void Spawn()
     {
         _elapsed = 0;
-        int rand = Random.Range(0, 5);
+        int first = GetIndex();
+        if (first == -1) return;
+
+        int second = UnityEngine.Random.Range(0, _spawnTable[first].Count);
+
+        foreach (EnemySquad squad in _spawnTable[first][second].EnemySquadList)
+        {
+            if (squad.Count + _currentEnemies.Count > _maxAmount) return;
+
+            for (int i = 0; i < squad.Count; i++)
+            {
+                IPoolable temp = _poolService.Take(squad.EnemyPrefab);
+                EnemyController enemy = temp.GameObject.GetComponent<EnemyController>();
+                enemy.DataModel.IsKilled.AddListener(_OnKilled);
+                enemy.NavMeshAgent.enabled = true;
+                _currentEnemies.Add(enemy);
+            }
+        }
+    }
+
+    private int GetIndex()
+    {
         int index = -1;
-        for(int i = rand; i >= 0; i--)
+        int rand = UnityEngine.Random.Range(0, 5);
+        for (int i = rand; i >= 0; i--)
         {
             if (_spawnTable.ContainsKey(i))
             {
@@ -62,20 +88,8 @@ public class EnemySpawner : MonoBehaviour, ISpawner
             }
         }
 
-        if(index == -1) return;
-
-        rand = Random.Range(0, _spawnTable[index].Count);
-
-        foreach(EnemySquad squad in _spawnTable[index][rand].EnemySquadList)
-        {
-            if (squad.Count + _currentEnemies.Count > _maxAmount) return;
-
-            for(int i = 0; i < squad.Count; i++)
-            {
-                GameObject temp = _resolver.Instantiate(squad.EnemyPrefab);
-                _currentEnemies.Add(temp.GetComponent<EnemyController>());
-            }
-        }
+        if (index == -1) return -1;
+        return index;
     }
 
     public List<EnemyController> GetCurrentEnemies()

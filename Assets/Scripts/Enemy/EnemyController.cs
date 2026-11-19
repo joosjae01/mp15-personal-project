@@ -1,19 +1,23 @@
 using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Pool;
 using VContainer;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IPoolable
 {
     [field : SerializeField] public BehaviorGraphAgent BehaviorAgent { get; private set; }
     [field : SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
     [field : SerializeField] public Animator Animator { get; private set; }
+
     [SerializeField] private EnemyDataSO _dataSO;
     [SerializeField] private EnemyAttackBase _attackSO;
     
     public PlayerController PlayerController { get; private set; }    
     public EnemyDataModel DataModel { get; private set; }
-    public EnemyHealth EnemyHealth { get; private set; }
+    public ObjectPool<IPoolable> Source { get; private set; }
+    public IDamageable EnemyHealth { get; private set; }
+    public GameObject GameObject { get; private set; }
 
     private EnemyBoardController _boardController;
 
@@ -21,10 +25,25 @@ public class EnemyController : MonoBehaviour
     public void Inject(PlayerController playerController)
     {
         DataModel = new(_dataSO);
-        EnemyHealth = new(this, DataModel);
         PlayerController = playerController;
+        EnemyHealth = new EnemyHealth(this, DataModel);
         _boardController = new EnemyBoardController(DataModel, _attackSO, playerController, this);
+        NavMeshAgent.enabled = false;
+        this.GameObject = this.gameObject;
     }
 
-    public void Reset() => DataModel.Reset(_dataSO);
+    private void OnDisable() => ResetData();
+
+    private void ResetData()
+    {
+        DataModel.Reset(_dataSO);
+        DataModel.IsKilled.RemoveAllListener();
+    }
+
+    public void TakeDamage(float damage) => EnemyHealth.TakeDamage(damage);
+
+    public void SetSource(ObjectPool<IPoolable> source)
+    {
+        Source = source;
+    }
 }

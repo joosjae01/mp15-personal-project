@@ -2,18 +2,27 @@ using UnityEngine;
 
 public class AssaultRifle : IWeapon
 {
-    private WeaponDataModel _model;
     private ISoundService _soundService;
-    public WeaponDataModel Model { get => _model; }
+    private LayerMask _targetLayer = LayerMask.GetMask("Enemy");
+    public WeaponDataModel Model { get; private set; }
 
     public AssaultRifle(WeaponContext context, ISoundService soundService)
     {
         _soundService = soundService;
-        _model = new WeaponDataModel(context.DataSO);
+        Model = new WeaponDataModel(context.DataSO);
     }
 
     public void Fire(WeaponController controller)
     {
-        _soundService.PlaySFX(_model.SFX);
+        _soundService.PlaySFX(Model.SFX);
+        Transform muzzle = controller.GetMuzzlePoint();
+
+        Ray ray = new Ray(muzzle.position, muzzle.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Model.Range, _targetLayer))
+        {
+            hit.collider.gameObject.GetComponent<EnemyController>().EnemyHealth.TakeDamage(Model.Power);
+        }
     }
 }

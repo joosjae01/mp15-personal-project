@@ -25,6 +25,7 @@ public class TargetFactory : ITargetFactory
             ITarget target = context.Type switch
             {
                 TargetType.Extermination => new Extermination(context),
+                TargetType.Escape => new Escape(context),
                 _ => null
             };
 

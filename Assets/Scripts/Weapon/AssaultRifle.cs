@@ -3,11 +3,15 @@ using UnityEngine;
 public class AssaultRifle : IWeapon
 {
     private ISoundService _soundService;
+    private IPoolService _poolService;
+    private Transform _muzzlePoint;
     private LayerMask _targetLayer = LayerMask.GetMask("Enemy");
+    private Vector3 _direction;
     public WeaponDataModel Model { get; private set; }
 
-    public AssaultRifle(WeaponContext context, ISoundService soundService)
+    public AssaultRifle(WeaponContext context, ISoundService soundService, IPoolService poolService)
     {
+        _poolService = poolService;
         _soundService = soundService;
         Model = new WeaponDataModel(context.DataSO);
     }
@@ -15,14 +19,29 @@ public class AssaultRifle : IWeapon
     public void Fire(WeaponController controller)
     {
         _soundService.PlaySFX(Model.SFX);
-        Transform muzzle = controller.GetMuzzlePoint();
+        _muzzlePoint = controller.GetMuzzlePoint();
+        _direction = _muzzlePoint.forward;
+        _direction += new Vector3(
+            Random.Range(-Model.Stability, Model.Stability),
+            0.0f,
+            Random.Range(-Model.Stability, Model.Stability)
+            );
 
-        Ray ray = new Ray(muzzle.position, muzzle.forward);
+        _direction = _direction.normalized;
+
+        Ray ray = new Ray(_muzzlePoint.position, _direction);
+        IPoolable effect = _poolService.Take(Model.VFX);
+        effect.GameObject.transform.SetPositionAndRotation(_muzzlePoint.position, Quaternion.Euler(_direction));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, Model.Range, _targetLayer))
         {
-            hit.collider.gameObject.GetComponent<EnemyController>().EnemyHealth.TakeDamage(Model.Power);
+            hit.collider.gameObject.GetComponent<EnemyController>().TakeDamage(Model.Power);
+            (effect as IBullet).SetTarget(hit.point);
+        }
+        else
+        {
+            (effect as IBullet).SetTarget(_muzzlePoint.position + _direction * Model.Range);
         }
     }
 }

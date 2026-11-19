@@ -9,7 +9,7 @@ public class WeaponFactory : IWeaponFactory
     {
         IWeapon temp = context.Type switch {
             WeaponType.Pistol => new Pistol(context, _soundService, _poolService),
-            WeaponType.AssaultRifle => new AssaultRifle(context, _soundService),
+            WeaponType.AssaultRifle => new AssaultRifle(context, _soundService, _poolService),
             WeaponType.ShotGun => new ShotGun(context, _soundService),
             _ => null
         };

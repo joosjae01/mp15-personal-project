@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3365734161865135644}
   - component: {fileID: 383491478763496947}
   m_Layer: 0
-  m_Name: PFB_BulletTrail
+  m_Name: VFX_BulletTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

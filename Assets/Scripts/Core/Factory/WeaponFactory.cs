@@ -4,6 +4,7 @@ public class WeaponFactory : IWeaponFactory
 {
     [Inject] private ISoundService _soundService;
     [Inject] private IPoolService _poolService;
+    [Inject] private PlayerWeaponRigger _rigger;
 
     public IWeapon Create(WeaponContext context)
     {
@@ -14,6 +15,7 @@ public class WeaponFactory : IWeaponFactory
             _ => null
         };
 
+        _rigger.CreateWeapon(temp.Model.Prefab);
         return temp;
     }
 }

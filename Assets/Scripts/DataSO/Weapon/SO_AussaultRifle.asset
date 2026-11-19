@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   Name: Assualt Rifle
   AnimationIndex: 1
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 4658884615271663114, guid: 5b9ac37811d12354a91355b0d336ec99, type: 3}
   VFX: {fileID: 6760226890695019780, guid: 31f165ce69efa2c4d8cec51491198de2, type: 3}
   SFX: {fileID: 11400000, guid: 882369f4beacd8d4fa99b66b204408b9, type: 2}
   Icon: {fileID: 0}

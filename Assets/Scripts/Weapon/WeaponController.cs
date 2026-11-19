@@ -9,10 +9,6 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Transform _muzzlePoint;
 
     private WeaponSlot _slot;
-    private WeaponSwap _swap;
-
-    private void OnEnable() => _swap.BindEvents();
-    private void OnDisable() => _swap.UnBindEvents();
 
     [Inject]
     public void Inject(WeaponSlotSO dataSO, WeaponInputModel inputModel, IWeaponFactory factory)
@@ -26,7 +22,6 @@ public class WeaponController : MonoBehaviour
         }
 
         _slot = new(slot);
-        _swap = new(inputModel, _slot);
         _weaponFire.SetWeapon(_slot);
     }
 

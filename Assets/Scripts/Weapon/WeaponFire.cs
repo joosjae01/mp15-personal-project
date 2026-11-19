@@ -7,6 +7,7 @@ public class WeaponFire : MonoBehaviour
     [SerializeField] private float _swapDelay;
 
     private PlayerAnimation _animation;
+    private PlayerWeaponRigger _rigger;
     private WeaponInputModel _inputModel;
     private WeaponController _controller;
     private WeaponSlot _slot;
@@ -28,11 +29,14 @@ public class WeaponFire : MonoBehaviour
     private void OnDisable() => UnBindEvents();
 
     [Inject]
-    public void Inject(WeaponInputModel inputModel, WeaponController controller, PlayerAnimation animation)
+    public void Inject(WeaponInputModel inputModel, WeaponController controller, PlayerAnimation animation, PlayerWeaponRigger rigger)
     {
+        _rigger = rigger;
         _animation = animation;
         _inputModel = inputModel;
         _controller = controller;
+        _rigger.ActiveWeapon(_slot.CurrentWeapon.Model.Prefab);
+        _rigger.ApplyRig(_slot.CurrentWeapon.Model.Prefab);
     }
 
     private void CheckFire(bool onFire)
@@ -133,8 +137,13 @@ public class WeaponFire : MonoBehaviour
     {
         _inputModel.OnSwap.Value = true;
         _animation.Swap(true);
-        yield return _waitForSwap;
+        _rigger.DeactiveWeapon(_currentWeapon.Model.Prefab);
+        _rigger.DisApplyRig();
         _animation.ChangeAnimation(_slot.CurrentWeapon.Model.AnimIndex);
+        yield return _waitForSwap;
+        _slot.Next();
+        _rigger.ActiveWeapon(_currentWeapon.Model.Prefab);
+        _rigger.ApplyRig(_currentWeapon.Model.Prefab);
         _animation.Swap(false);
         _inputModel.OnSwap.Value = false;
     }

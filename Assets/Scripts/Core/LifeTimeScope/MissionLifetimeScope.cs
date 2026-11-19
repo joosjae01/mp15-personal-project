@@ -59,6 +59,7 @@ public class MissionLifetimeScope : LifetimeScope
         builder.RegisterComponentInHierarchy<PlayerMovement>();
         builder.RegisterComponentInHierarchy<PlayerAnimation>();
         builder.RegisterComponentInHierarchy<PlayerController>();
+        builder.RegisterComponentInHierarchy<PlayerWeaponRigger>();
 
         //Enemy
         builder.RegisterComponentInHierarchy<EnemySpawner>();

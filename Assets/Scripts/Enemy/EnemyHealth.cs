@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EnemyHealth : IDamageable
 {
     private EnemyController _controller;
@@ -7,11 +9,21 @@ public class EnemyHealth : IDamageable
     {
         _controller = controller;
         _dataModel = dataModel;
+        _dataModel.CurrentHealth.AddListener(Die);
+    }
+
+    private void Die(int health)
+    {
+        if (health <= 0 && !_dataModel.IsKilled.Value)
+        {
+            _dataModel.IsKilled.Value = true;
+            _controller.Source.Release(_controller);
+        }
     }
 
     public void TakeDamage(float damage)
     {
-        if(_dataModel.Shield.Value > 0)
+        if (_dataModel.Shield.Value > 0)
         {
             if (_dataModel.Shield.Value >= damage) _dataModel.Shield.Value -= (int)damage;
             else
@@ -22,17 +34,7 @@ public class EnemyHealth : IDamageable
         }
         else
         {
-            if(_dataModel.CurrentHealth.Value > damage)
-            {
-                _dataModel.CurrentHealth.Value -= (int)damage;
-            }
-            else
-            {
-                _dataModel.IsKilled.Value = true;
-                _dataModel.IsKilled.RemoveAllListener();
-                _controller.gameObject.SetActive(false);
-            }
+            _dataModel.CurrentHealth.Value -= (int)damage;
         }
-        
     }
 }

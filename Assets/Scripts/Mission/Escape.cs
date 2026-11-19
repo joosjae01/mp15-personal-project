@@ -9,6 +9,8 @@ public class Escape : ITarget
     {
         Name = context.Name;
         Desc = context.Desc;
+        IsCompleted = new(false);
+        IsFailed = new(false);
     }
 
     public void Start()

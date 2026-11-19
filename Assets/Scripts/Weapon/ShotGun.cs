@@ -12,7 +12,7 @@ public class ShotGun : IWeapon
         _model = new WeaponDataModel(context.DataSO);
     }
 
-    public void Fire()
+    public void Fire(WeaponController controller)
     {
         _soundService.PlaySFX(_model.SFX);
     }

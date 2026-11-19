@@ -4,19 +4,22 @@ using VContainer;
 
 public class WeaponFire : MonoBehaviour
 {
+    [SerializeField] private float _swapDelay;
+
+    private PlayerAnimation _animation;
     private WeaponInputModel _inputModel;
+    private WeaponController _controller;
     private WeaponSlot _slot;
     private Coroutine _fireRoutine;
     private Coroutine _reloadRoutine;
     private WaitForSeconds _waitForSwap;
     private IWeapon _currentWeapon => _slot.CurrentWeapon;
 
-    [SerializeField] private float _swapDelay;
     private float _elapsed;
-    private bool _isEmpty => _currentWeapon.Model.CurrentMagazine.Value <= 0;
     private bool _onSwap => _inputModel.OnSwap.Value;
     private bool _onReload => _inputModel.IsReload.Value;
     private bool _isCoolOn => _elapsed >= _currentWeapon.Model.CoolDown;
+    private bool _isEmpty => _currentWeapon.Model.CurrentMagazine.Value <= 0;
     private bool _canFire => _isCoolOn && !_isEmpty && !_onSwap && !_onReload;
 
     private void OnEnable() => BindEvents();
@@ -25,10 +28,11 @@ public class WeaponFire : MonoBehaviour
     private void OnDisable() => UnBindEvents();
 
     [Inject]
-    public void Inject(WeaponInputModel inputModel)
+    public void Inject(WeaponInputModel inputModel, WeaponController controller, PlayerAnimation animation)
     {
+        _animation = animation;
         _inputModel = inputModel;
-        _inputModel.CurrentWeapon.Value = _slot.CurrentWeapon.Model.AnimIndex;
+        _controller = controller;
     }
 
     private void CheckFire(bool onFire)
@@ -46,6 +50,7 @@ public class WeaponFire : MonoBehaviour
         if (_fireRoutine == null) return;
         StopCoroutine(_fireRoutine);
         _fireRoutine = null;
+        _animation.Fire(false);
     }
     private IEnumerator FireRoutine()
     {
@@ -53,9 +58,17 @@ public class WeaponFire : MonoBehaviour
         {
             if (_canFire)
             {
-                _currentWeapon.Fire();
+                _currentWeapon.Fire(_controller);
+                _currentWeapon.Model.CurrentMagazine.Value--;
+                _animation.Fire(true);
                 _elapsed = 0.0f;
+            } 
+            
+            else if (_isEmpty)
+            {
+                StopFire();
             }
+            
             yield return null;
         }
     }
@@ -73,12 +86,14 @@ public class WeaponFire : MonoBehaviour
     private void StartReload()
     {
         if (_reloadRoutine != null) return;
+        _animation.Reload(true);
         _currentWeapon.Model.CurrentReload.Value = 0.0f;
         _reloadRoutine = StartCoroutine(ReloadRoutine());
     }
     private void StopReload()
     {
         if (_reloadRoutine == null) return;
+        _animation.Reload(false);
         StopCoroutine(_reloadRoutine);
         _reloadRoutine = null;
     }
@@ -117,8 +132,10 @@ public class WeaponFire : MonoBehaviour
     private IEnumerator SwapRoutine()
     {
         _inputModel.OnSwap.Value = true;
+        _animation.Swap(true);
         yield return _waitForSwap;
-        _inputModel.CurrentWeapon.Value = _slot.CurrentWeapon.Model.AnimIndex;
+        _animation.ChangeAnimation(_slot.CurrentWeapon.Model.AnimIndex);
+        _animation.Swap(false);
         _inputModel.OnSwap.Value = false;
     }
 

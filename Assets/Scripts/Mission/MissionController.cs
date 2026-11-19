@@ -33,6 +33,7 @@ public class MissionController : MonoBehaviour
     {
         if (isCompleted)
         {
+            Debug.Log($"{name} : [{_currentTarget.Name}] 임무 완수");
             _currentTarget.IsCompleted.RemoveListener(StartNextTarget);
             if (_targetQueue.Count == 0) DataModel.IsCompleted.Value = true;
             else

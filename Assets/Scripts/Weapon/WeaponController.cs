@@ -6,6 +6,7 @@ using VContainer;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private WeaponFire _weaponFire;
+    [SerializeField] private Transform _muzzlePoint;
 
     private WeaponSlot _slot;
     private WeaponSwap _swap;
@@ -32,5 +33,10 @@ public class WeaponController : MonoBehaviour
     public WeaponSlot GetWeaponSlot()
     {
         return _slot;
+    }
+
+    public Transform GetMuzzlePoint()
+    {
+        return _muzzlePoint;
     }
 }

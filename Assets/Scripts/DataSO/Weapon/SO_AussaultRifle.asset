@@ -15,12 +15,13 @@ MonoBehaviour:
   Name: Assualt Rifle
   AnimationIndex: 1
   Prefab: {fileID: 0}
+  VFX: {fileID: 6760226890695019780, guid: 31f165ce69efa2c4d8cec51491198de2, type: 3}
   SFX: {fileID: 11400000, guid: 882369f4beacd8d4fa99b66b204408b9, type: 2}
   Icon: {fileID: 0}
-  Power: 0
+  Power: 20
   FireRate: 5
-  Stability: 0
+  Stability: 0.2
   MaxMagazine: 200
   AmmoClip: 5
-  Range: 0
+  Range: 10
   ReloadTime: 1

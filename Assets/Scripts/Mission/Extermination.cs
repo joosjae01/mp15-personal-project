@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Extermination : ITarget
 {
     public string Name { get; private set; }
@@ -35,50 +37,32 @@ public class Extermination : ITarget
 
     public void IncreaseCount(bool IsKilled)
     {
-        if (IsKilled) CurrentCount++;
+        if (IsKilled)
+        {
+            CurrentCount++;
+        }
         if(CurrentCount == GoalCount)
         {
             Complete();
         }
     }
 
-    private void Init()
-    {
-        foreach(EnemyController enemy in _spawner.GetCurrentEnemies())
-        {
-            enemy.DataModel.IsKilled.AddListener(IncreaseCount);
-        }
-
-        _spawner.StartSpawn();
-        _playerData.IsDead.AddListener(CheckAlive);
-    }
-
-    private void Clear()
-    {
-        foreach(EnemyController enemy in _spawner.GetCurrentEnemies())
-        {
-            enemy.DataModel.IsKilled.RemoveListener(IncreaseCount);
-        }
-
-        _spawner.StopSpawn();
-        _playerData.IsDead.RemoveListener(CheckAlive);
-    }
-
     public void Start()
     {
-        Init();
-        _spawner.StartSpawn();
+        _spawner.StartSpawn(IncreaseCount);
+        _playerData.IsDead.AddListener(CheckAlive);
     }
 
     public void Complete()
     {
         IsCompleted.Value = true;
-        Clear();
+        _spawner.StopSpawn();
+        _playerData.IsDead.RemoveListener(CheckAlive);
     }
 
     public void Fail()
     {
         IsFailed.Value = true;
-        Clear();
+        _playerData.IsDead.RemoveListener(CheckAlive);
     }
 }

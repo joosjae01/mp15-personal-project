@@ -113,7 +113,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.6805062, b: 0, a: 1}
+      key0: {r: 0.29424706, g: 0.6971913, b: 0.83396226, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 1, g: 1, b: 1, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -164,4 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1170454384cee0844a536d05b4ec71e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletTrail
-  _moveSpeed: 50
+  _moveSpeed: 35
+  _renderer: {fileID: 3365734161865135644}

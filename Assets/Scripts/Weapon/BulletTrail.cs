@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 public class BulletTrail : MonoBehaviour, IPoolable, IBullet
 {
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private TrailRenderer _renderer;
     public ObjectPool<IPoolable> Source { get; private set; }
     public GameObject GameObject { get => gameObject; }
 
@@ -20,6 +21,7 @@ public class BulletTrail : MonoBehaviour, IPoolable, IBullet
 
     private IEnumerator MoveToTarget(Vector3 target)
     {
+        _renderer.Clear();
         while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, _moveSpeed * Time.deltaTime);

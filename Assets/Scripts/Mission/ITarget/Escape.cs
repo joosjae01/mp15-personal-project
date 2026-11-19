@@ -5,10 +5,15 @@ public class Escape : ITarget
     public ObservableProperty<bool> IsCompleted { get; private set; }
     public ObservableProperty<bool> IsFailed { get; private set; }
 
+    private float _elapsed;
+
     public Escape(TargetContext context)
     {
         Name = context.Name;
         Desc = context.Desc;
+
+
+
         IsCompleted = new(false);
         IsFailed = new(false);
     }

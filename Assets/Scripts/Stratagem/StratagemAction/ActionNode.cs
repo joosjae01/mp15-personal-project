@@ -17,19 +17,18 @@ public class ActionNode
     public void Enter(ActionContext context)
     {
         _actionSO.Enter(context);
-        if(context.Caster != null) context.Caster.StartCoroutine(DelayRoutine());
-        Exit(context);
+
+        if (_actionSO.Delay != 0) context.Caster.StartCoroutine(DelayRoutine(context));
+        else Exit(context);
+
+
     }
 
-    private IEnumerator DelayRoutine()
+    private IEnumerator DelayRoutine(ActionContext context)
     {
-        if(_actionSO.Delay != 0)
-        {
-            _delay = new WaitForSeconds(_actionSO.Delay);
-            yield return _delay;
-        }
-
-        yield return null;
+        _delay = new WaitForSeconds(_actionSO.Delay);
+        yield return _delay;
+        Exit(context);
     }
 
     public void Exit(ActionContext context) => _onExited?.Invoke(context);

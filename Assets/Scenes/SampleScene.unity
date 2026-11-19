@@ -1176,6 +1176,8 @@ MonoBehaviour:
     Count: 20
   - Prefab: {fileID: 6760226890695019780, guid: 31f165ce69efa2c4d8cec51491198de2, type: 3}
     Count: 30
+  - Prefab: {fileID: 4996084466630847820, guid: 499989cb03a7c7147a1ff3e7efbcdcb4, type: 3}
+    Count: 10
 --- !u!4 &2104919529
 Transform:
   m_ObjectHideFlags: 0
@@ -1242,10 +1244,6 @@ PrefabInstance:
     - target: {fileID: 2654894880079258424, guid: fe91ff886b573c742ab771f9f22cd400, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6154504473908021589, guid: fe91ff886b573c742ab771f9f22cd400, type: 3}
-      propertyPath: _swapDelay
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

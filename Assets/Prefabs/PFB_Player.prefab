@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74cc75cdc75c3dc4183501322a3cd748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponFire
-  _swapDelay: 0.8
+  _swapDelay: 1.5
 --- !u!1 &6826679825516336435
 GameObject:
   m_ObjectHideFlags: 0

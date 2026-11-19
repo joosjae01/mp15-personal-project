@@ -7,6 +7,7 @@ public class StratagemFactory : IStratagemFactory
     [Inject] private PlayerController _playerController;
     [Inject] private PlayerDataModel _playerData;
     [Inject] private WeaponController _weaponController;
+    [Inject] private IPoolService _poolService;
 
     public Dictionary<StratagemDataSO, List<ActionNode>> Create(StratagemSlotSO slotSO)
     {
@@ -22,6 +23,7 @@ public class StratagemFactory : IStratagemFactory
             }
 
             dataSO.Context.Caster = _playerController;
+            dataSO.Context.poolService = _poolService;
             dataSO.Context.PlayerData = _playerData;
             dataSO.Context.WeaponSlot = _weaponController.GetWeaponSlot();
 

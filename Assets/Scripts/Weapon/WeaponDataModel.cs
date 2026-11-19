@@ -1,9 +1,12 @@
+using UnityEngine;
+
 public class WeaponDataModel
 {
     public ObservableProperty<int> CurrentMagazine;
     public ObservableProperty<int> MaxMagazine;
     public ObservableProperty<float> CurrentReload;
     public SoundDataSO SFX {get; private set;}
+    public GameObject VFX { get; private set; }
 
     public float ReloadTime { get; private set; }
     public float Stability { get; private set; }
@@ -23,6 +26,7 @@ public class WeaponDataModel
         CurrentReload = new(0.0f);
         MaxMagazine = new(dataSO.MaxMagazine);
         SFX = dataSO.SFX;
+        VFX = dataSO.VFX;
 
         ReloadTime = dataSO.ReloadTime;
         Stability = dataSO.Stability;

@@ -40,7 +40,6 @@ public class Extermination : ITarget
         if (IsKilled)
         {
             CurrentCount++;
-            Debug.Log(CurrentCount);
         }
         if(CurrentCount == GoalCount)
         {

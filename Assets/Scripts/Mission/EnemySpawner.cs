@@ -35,6 +35,7 @@ public class EnemySpawner : MonoBehaviour, ISpawner
     public void StopSpawn()
     {
         _OnKilled = null;
+        foreach(EnemyController enemy in _currentEnemies) enemy.DataModel.IsKilled.RemoveAllListener();
         _isActivated = false;
     }
 

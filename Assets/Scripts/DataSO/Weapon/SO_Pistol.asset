@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Pistol
   AnimationIndex: 0
   Prefab: {fileID: 0}
+  VFX: {fileID: 6760226890695019780, guid: 31f165ce69efa2c4d8cec51491198de2, type: 3}
   SFX: {fileID: 11400000, guid: 88990f4b4ad0c634e8b1b59131c81e13, type: 2}
   Icon: {fileID: 0}
   Power: 50

@@ -1174,6 +1174,8 @@ MonoBehaviour:
     Count: 20
   - Prefab: {fileID: 5717399120404681861, guid: 00f94e7d7d711d94b8cfeb9340b5703c, type: 3}
     Count: 20
+  - Prefab: {fileID: 6760226890695019780, guid: 31f165ce69efa2c4d8cec51491198de2, type: 3}
+    Count: 30
 --- !u!4 &2104919529
 Transform:
   m_ObjectHideFlags: 0

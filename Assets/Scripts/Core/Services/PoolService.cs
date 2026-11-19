@@ -27,7 +27,8 @@ public class PoolService : MonoBehaviour, IPoolService
                 OnTake,
                 OnReturn,
                 OnDestroyPoolable,
-                true,
+                false,
+                context.Count,
                 context.Count
                 );
 

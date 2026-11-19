@@ -59,9 +59,16 @@ public class WeaponFire : MonoBehaviour
             if (_canFire)
             {
                 _currentWeapon.Fire(_controller);
+                _currentWeapon.Model.CurrentMagazine.Value--;
                 _animation.Fire(true);
                 _elapsed = 0.0f;
+            } 
+            
+            else if (_isEmpty)
+            {
+                StopFire();
             }
+            
             yield return null;
         }
     }

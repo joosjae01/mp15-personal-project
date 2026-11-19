@@ -22,8 +22,11 @@ public class BulletTrail : MonoBehaviour, IPoolable, IBullet
     {
         while (true)
         {
-            if(transform.position == target) Source.Release(this);
-            transform.Translate(transform.forward * _moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target, _moveSpeed * Time.deltaTime);
+            if(Vector3.Distance(transform.position, target) <= 0.1)
+            {
+                Source.Release(this);
+            }
             yield return null;
         }
     }

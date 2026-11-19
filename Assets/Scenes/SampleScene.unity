@@ -231,7 +231,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 21f9eb3d4c76ef244ad10b6503b001a0, type: 2}
+  - {fileID: 2100000, guid: 157cd6b71f855784faba6b4a0a341285, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1242,6 +1242,18 @@ PrefabInstance:
     - target: {fileID: 2654894880079258424, guid: fe91ff886b573c742ab771f9f22cd400, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7533596894663914780, guid: fe91ff886b573c742ab771f9f22cd400, type: 3}
+      propertyPath: _offset.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7533596894663914780, guid: fe91ff886b573c742ab771f9f22cd400, type: 3}
+      propertyPath: _offset.z
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7533596894663914780, guid: fe91ff886b573c742ab771f9f22cd400, type: 3}
+      propertyPath: _limitDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

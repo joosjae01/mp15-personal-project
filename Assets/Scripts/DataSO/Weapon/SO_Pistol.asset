@@ -20,7 +20,7 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Power: 50
   FireRate: 2
-  Stability: 0
+  Stability: 0.05
   MaxMagazine: 20
   AmmoClip: 4
   Range: 10

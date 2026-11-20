@@ -5,6 +5,7 @@ using UnityEngine;
 public class ActionNode
 {
     public ActionContext Context { get; set; }
+    public ActionStruct Struct { get; set; }
     private event Action<ActionContext> _onExited;
     private StratagemActionSO _actionSO;
     private WaitForSeconds _delay;
@@ -14,14 +15,18 @@ public class ActionNode
         _actionSO = actionSO;
     }
 
+    public void Perform()
+    {
+        Context = new ActionContext(Struct);
+        Enter(Context);
+    }
+
     public void Enter(ActionContext context)
     {
         _actionSO.Enter(context);
 
         if (_actionSO.Delay != 0) context.Caster.StartCoroutine(DelayRoutine(context));
         else Exit(context);
-
-
     }
 
     private IEnumerator DelayRoutine(ActionContext context)
@@ -31,9 +36,14 @@ public class ActionNode
         Exit(context);
     }
 
-    public void Exit(ActionContext context) => _onExited?.Invoke(context);
-    public void Link(ActionNode prev) => prev.AddListener(Enter);
-
+    public void Exit(ActionContext context)
+    {
+        _onExited?.Invoke(context);
+    }
+    public void Link(ActionNode prev)
+    {
+        prev.AddListener(Enter);
+    }
     public void AddListener(Action<ActionContext> action) => _onExited += action;
     public void RemoveListener(Action<ActionContext> action) => _onExited -= action;
     public void RemoveAllListener() => _onExited = null;

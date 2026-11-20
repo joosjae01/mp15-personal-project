@@ -21,5 +21,6 @@ public class AThrow : StratagemActionSO
     {
         yield return new WaitForSeconds(_lifeTime);
         context.TargetPos = context.Thrown.transform.position;
+        context.TargetPos.y = 0;
     }
 }

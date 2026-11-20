@@ -15,18 +15,14 @@ MonoBehaviour:
   Name: "\uD3ED\uD0C4"
   Desc: "\uD22C\uCC99 \uC9C0\uC810\uC5D0 \uC801\uB2F9\uD55C \uD53C\uD574\uB97C \uC785\uD78C\uB2E4"
   CoolDown: 5
+  Damage: 100
   Icon: {fileID: 0}
+  Creation: {fileID: 4996084466630847820, guid: 499989cb03a7c7147a1ff3e7efbcdcb4, type: 3}
   Type: 0
   Command: 040000000400000004000000
-  Context:
-    Caster: {fileID: 0}
-    CreationPrefab: {fileID: 4996084466630847820, guid: 499989cb03a7c7147a1ff3e7efbcdcb4, type: 3}
-    Targets: []
-    Thrown: {fileID: 0}
-    TargetPos: {x: 0, y: 0, z: 3.5094388}
-    Damage: 100
   Action:
   - {fileID: 11400000, guid: f0e5473405f7d954a947010d0663c221, type: 2}
   - {fileID: 11400000, guid: d930203ce2a3c974d83be8db266121c5, type: 2}
   - {fileID: 11400000, guid: 6432cfa958c7f9646ba1f8c88e64e117, type: 2}
   - {fileID: 11400000, guid: d4addc73c5ae3354ab5449b39457db5e, type: 2}
+  - {fileID: 11400000, guid: 43205e175c2a66c4e9bfe99c9c76f770, type: 2}

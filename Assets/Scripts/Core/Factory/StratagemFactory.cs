@@ -12,6 +12,7 @@ public class StratagemFactory : IStratagemFactory
     public Dictionary<StratagemDataSO, List<ActionNode>> Create(StratagemSlotSO slotSO)
     {
         Dictionary<StratagemDataSO, List<ActionNode>> dict = new();
+        WeaponSlot weaponSlot = _weaponController.GetWeaponSlot();
 
         foreach (StratagemDataSO dataSO in slotSO.StratagemData)
         {
@@ -22,12 +23,9 @@ public class StratagemFactory : IStratagemFactory
                 node.Add(temp);
             }
 
-            dataSO.Context.Caster = _playerController;
-            dataSO.Context.poolService = _poolService;
-            dataSO.Context.PlayerData = _playerData;
-            dataSO.Context.WeaponSlot = _weaponController.GetWeaponSlot();
+            ActionStruct actionStruct = new(_poolService, _playerController, _playerData, weaponSlot, dataSO.Creation, dataSO.Damage);
 
-            node[0].Context = dataSO.Context;
+            node[0].Struct = actionStruct;
 
             for (int i = 1; i < node.Count; i++)
             {

@@ -6,11 +6,11 @@ using VContainer;
 public class AVFX : StratagemActionSO
 {
     [SerializeField] private GameObject _VFX;
-    [Inject] private IPoolService _poolService;
 
     public override void Enter(ActionContext context)
     {
         Debug.Log($"{name} : VFX 액션 확인");
-        _poolService.Take(_VFX);
+        IPoolable clone = context.PoolService.Take(_VFX);
+        clone.GameObject.transform.position = context.TargetPos;
     }
 }

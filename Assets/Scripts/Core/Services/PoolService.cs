@@ -62,7 +62,7 @@ public class PoolService : MonoBehaviour, IPoolService
     private void OnReturn(IPoolable poolable) => poolable.GameObject.SetActive(false);
     private void OnDestroyPoolable(IPoolable poolable) => Destroy(poolable.GameObject);
 
-    public IPoolable Take(GameObject prefab) => _pool[prefab].Get();
+    public IPoolable Take(GameObject prefab) => _pool[prefab].Get();    
 
     public void Return(IPoolable poolable)
     {

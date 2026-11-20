@@ -16,13 +16,8 @@ MonoBehaviour:
   Desc: "\uC9C0\uC810\uC5D0 \uAC10\uC18D\uC744 \uBC1C\uC0DD\uC2DC\uD0A8\uB2E4"
   CoolDown: 20
   Icon: {fileID: 0}
+  Creation: {fileID: 4996084466630847820, guid: 499989cb03a7c7147a1ff3e7efbcdcb4, type: 3}
   Type: 0
   Command: 020000000200000001000000
-  Context:
-    Caster: {fileID: 0}
-    CreationPrefab: {fileID: 4996084466630847820, guid: 499989cb03a7c7147a1ff3e7efbcdcb4, type: 3}
-    Targets: []
-    Thrown: {fileID: 0}
-    TargetPos: {x: 0, y: 0, z: 0}
   Action:
   - {fileID: 11400000, guid: f0e5473405f7d954a947010d0663c221, type: 2}

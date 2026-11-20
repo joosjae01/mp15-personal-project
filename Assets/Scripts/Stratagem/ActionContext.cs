@@ -5,16 +5,29 @@ using UnityEngine;
 [Serializable]
 public class ActionContext
 {
+    // 정적
+    public IPoolService PoolService;
     public PlayerController Caster;
     public PlayerDataModel PlayerData;
-    public IPoolService poolService;
-
     public WeaponSlot WeaponSlot;
-    public GameObject CreationPrefab;
+    public float Damage;
 
-    public List<EnemyController> Targets = new();
+    // 동적
+    public GameObject CreationPrefab;
+    public IPoolable Creation;
     public Rigidbody Thrown;
 
+    public List<EnemyController> Targets = new();
+    
     public Vector3 TargetPos;
-    public float Damage;
+
+    public ActionContext(ActionStruct actionStruct)
+    {
+        PoolService = actionStruct.PoolService;
+        Caster = actionStruct.Caster;
+        PlayerData = actionStruct.PlayerData;
+        WeaponSlot = actionStruct.WeaponSlot;
+        CreationPrefab = actionStruct.Prefab;
+        Damage = actionStruct.Damage;
+    }
 }

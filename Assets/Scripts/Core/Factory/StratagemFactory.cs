@@ -8,6 +8,7 @@ public class StratagemFactory : IStratagemFactory
     [Inject] private PlayerDataModel _playerData;
     [Inject] private WeaponController _weaponController;
     [Inject] private IPoolService _poolService;
+    [Inject] private ISpawner _spawner;
 
     public Dictionary<StratagemDataSO, List<ActionNode>> Create(StratagemSlotSO slotSO)
     {
@@ -23,7 +24,7 @@ public class StratagemFactory : IStratagemFactory
                 node.Add(temp);
             }
 
-            ActionStruct actionStruct = new(_poolService, _playerController, _playerData, weaponSlot, dataSO.Creation, dataSO.Damage);
+            ActionStruct actionStruct = new(_poolService, _spawner, _playerController, _playerData, weaponSlot, dataSO.Creation, dataSO.Damage);
 
             node[0].Struct = actionStruct;
 

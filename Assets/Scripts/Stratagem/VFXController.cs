@@ -9,6 +9,7 @@ public class VFXController : MonoBehaviour, IPoolable
 
     private WaitForSeconds _waitForReturn;
     private Coroutine _returnRoutine;
+    private Transform _target;
 
     [SerializeField] private ParticleSystem _particle;
 
@@ -26,6 +27,14 @@ public class VFXController : MonoBehaviour, IPoolable
     {
         _particle.Play();
         StartReturn();
+    }
+
+    private void Update()
+    {
+        if(_target != null)
+        {
+            transform.position = _target.position;
+        }
     }
 
     private void OnDisable()
@@ -51,5 +60,10 @@ public class VFXController : MonoBehaviour, IPoolable
     {
         yield return _waitForReturn;
         Source.Release(this);
+    }
+
+    public void SetTarget(Transform target)
+    {
+        _target = target;
     }
 }

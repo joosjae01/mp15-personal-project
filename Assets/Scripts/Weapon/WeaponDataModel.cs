@@ -17,7 +17,7 @@ public class WeaponDataModel
     public float Range { get; private set; }
 
     public int AnimIndex { get; private set; }
-    public int AmmoClip { get; private set; }
+    public int AmmoClip { get; set; }
     
     
 

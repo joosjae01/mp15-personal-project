@@ -13,8 +13,7 @@ public class AScan : StratagemActionSO
 
         foreach(Collider collider in colliders)
         {
-            EnemyController enemy;
-            collider.gameObject.TryGetComponent<EnemyController>(out enemy);
+            EnemyController enemy = context.Spawner.GetEnemy(collider.gameObject);
             context.Targets.Add(enemy);
         }
     }

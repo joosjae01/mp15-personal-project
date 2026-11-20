@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SA_SupplyAmmo
   m_EditorClassIdentifier: Assembly-CSharp::ASupply
   Delay: 0
-  _amount: 10
+  _amount: 2

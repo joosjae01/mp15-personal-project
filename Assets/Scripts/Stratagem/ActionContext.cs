@@ -7,6 +7,7 @@ public class ActionContext
 {
     // 정적
     public IPoolService PoolService;
+    public ISpawner Spawner;
     public PlayerController Caster;
     public PlayerDataModel PlayerData;
     public WeaponSlot WeaponSlot;
@@ -24,6 +25,7 @@ public class ActionContext
     public ActionContext(ActionStruct actionStruct)
     {
         PoolService = actionStruct.PoolService;
+        Spawner = actionStruct.Spawner;
         Caster = actionStruct.Caster;
         PlayerData = actionStruct.PlayerData;
         WeaponSlot = actionStruct.WeaponSlot;

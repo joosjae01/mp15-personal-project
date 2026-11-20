@@ -6,6 +6,6 @@ public class ASupply : StratagemActionSO
     [SerializeField] private int _amount;
     public override void Enter(ActionContext context)
     {
-        context.WeaponSlot.CurrentWeapon.Model.CurrentMagazine.Value += _amount;
+        context.WeaponSlot.CurrentWeapon.Model.AmmoClip += _amount;
     }
 }

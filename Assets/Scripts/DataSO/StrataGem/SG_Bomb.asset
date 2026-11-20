@@ -19,7 +19,7 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Creation: {fileID: 4996084466630847820, guid: 499989cb03a7c7147a1ff3e7efbcdcb4, type: 3}
   Type: 0
-  Command: 040000000400000004000000
+  Command: 040000000400000002000000
   Action:
   - {fileID: 11400000, guid: f0e5473405f7d954a947010d0663c221, type: 2}
   - {fileID: 11400000, guid: d930203ce2a3c974d83be8db266121c5, type: 2}

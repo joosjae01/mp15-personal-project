@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour, ISpawner
     private bool _isCoolOn => _elapsed >= _spawnPeriod;
     private bool _canSpawn => _isActivated && _isCoolOn;
 
-    private List<EnemyController> _currentEnemies = new();
+    private Dictionary<GameObject, EnemyController> _currentEnemies = new();
     private Dictionary<int, List<SpawnDataSO>> _spawnTable = new();
     private event Action<bool> _OnKilled;
 
@@ -35,7 +35,10 @@ public class EnemySpawner : MonoBehaviour, ISpawner
     public void StopSpawn()
     {
         _OnKilled = null;
-        foreach(EnemyController enemy in _currentEnemies) enemy.DataModel.IsKilled.RemoveAllListener();
+        foreach(KeyValuePair<GameObject, EnemyController> enemy in _currentEnemies)
+        {
+            enemy.Value.DataModel.IsKilled.RemoveAllListener();
+        }
         _isActivated = false;
     }
 
@@ -71,7 +74,7 @@ public class EnemySpawner : MonoBehaviour, ISpawner
                 EnemyController enemy = temp.GameObject.GetComponent<EnemyController>();
                 enemy.DataModel.IsKilled.AddListener(_OnKilled);
                 enemy.NavMeshAgent.enabled = true;
-                _currentEnemies.Add(enemy);
+                _currentEnemies[enemy.gameObject] = enemy;
             }
         }
     }
@@ -93,8 +96,7 @@ public class EnemySpawner : MonoBehaviour, ISpawner
         return index;
     }
 
-    public List<EnemyController> GetCurrentEnemies()
-    {
-        return _currentEnemies;
-    }
+    public Dictionary<GameObject, EnemyController> GetEnemies() => _currentEnemies;
+
+    public EnemyController GetEnemy(GameObject clone) => _currentEnemies[clone];
 }

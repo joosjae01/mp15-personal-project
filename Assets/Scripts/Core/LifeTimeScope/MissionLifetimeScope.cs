@@ -62,7 +62,7 @@ public class MissionLifetimeScope : LifetimeScope
         builder.RegisterComponentInHierarchy<PlayerWeaponRigger>();
 
         //Enemy
-        builder.RegisterComponentInHierarchy<EnemySpawner>();
+        builder.RegisterComponentInHierarchy<EnemySpawner>().As<ISpawner>();
 
         //Stratagem
         builder.RegisterComponentInHierarchy<StratagemController>();

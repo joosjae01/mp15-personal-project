@@ -50,6 +50,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "PlayerInteract",
+                    "type": "Button",
+                    "id": "f56c9f62-ecf9-49fe-83ef-15e0904e85b2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -151,6 +160,17 @@
                     "action": "PlayerSwap",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e08e345d-76b4-4a91-bcf4-dcbe16c1bf07",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -223,6 +243,34 @@
                     "action": "Command",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "InteractMove",
+            "id": "b328b0a6-f4d6-48ba-9f4d-5f31f6e7561f",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "39ac334c-d490-4ad2-8301-e6a359a888fb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c99b4c1b-5846-444e-ae97-2dc64af032f0",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

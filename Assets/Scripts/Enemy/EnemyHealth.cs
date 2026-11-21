@@ -1,9 +1,13 @@
+using System.Collections;
+using UnityEditor.Animations;
 using UnityEngine;
+using VContainer;
 
 public class EnemyHealth : IDamageable
 {
     private EnemyController _controller;
     private EnemyDataModel _dataModel;
+    private WaitForSeconds _waitForDelay;
 
     public EnemyHealth(EnemyController controller, EnemyDataModel dataModel)
     {
@@ -17,7 +21,11 @@ public class EnemyHealth : IDamageable
         if (health <= 0 && !_dataModel.IsKilled.Value)
         {
             _dataModel.IsKilled.Value = true;
-            _controller.Source.Release(_controller);
+            _controller.BehaviorAgent.SetVariableValue<bool>("IsDead", true);
+            AnimatorStateInfo state = _controller.Animator.GetCurrentAnimatorStateInfo(0);
+            float duration = state.length;
+            _waitForDelay = new WaitForSeconds(duration);
+            _controller.StartCoroutine(DieRoutine());
         }
     }
 
@@ -36,5 +44,11 @@ public class EnemyHealth : IDamageable
         {
             _dataModel.CurrentHealth.Value -= (int)damage;
         }
+    }
+
+    private IEnumerator DieRoutine()
+    {
+        yield return _waitForDelay;
+        _controller.Source.Release(_controller);
     }
 }

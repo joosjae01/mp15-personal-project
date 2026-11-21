@@ -7,6 +7,7 @@ public class WeaponDataModel
     public ObservableProperty<float> CurrentReload;
     public SoundDataSO SFX {get; private set;}
     public GameObject VFX { get; private set; }
+    public GameObject Prefab { get; private set; }
 
     public float ReloadTime { get; private set; }
     public float Stability { get; private set; }
@@ -16,7 +17,7 @@ public class WeaponDataModel
     public float Range { get; private set; }
 
     public int AnimIndex { get; private set; }
-    public int AmmoClip { get; private set; }
+    public int AmmoClip { get; set; }
     
     
 
@@ -27,6 +28,7 @@ public class WeaponDataModel
         MaxMagazine = new(dataSO.MaxMagazine);
         SFX = dataSO.SFX;
         VFX = dataSO.VFX;
+        Prefab = dataSO.Prefab;
 
         ReloadTime = dataSO.ReloadTime;
         Stability = dataSO.Stability;

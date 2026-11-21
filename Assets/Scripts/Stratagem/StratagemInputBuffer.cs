@@ -88,7 +88,7 @@ public class StratagemInputBuffer
     public void PerformAction(bool active)
     {
         if (active) Init();
-        if (!active) _elected?.Enter(_elected.Context);
+        if (!active) _elected?.Perform();
 
         _count = 0;
     }

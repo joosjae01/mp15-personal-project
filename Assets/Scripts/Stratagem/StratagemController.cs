@@ -4,7 +4,6 @@ using VContainer;
 
 public class StratagemController : MonoBehaviour
 {
-    private List<StratagemDataSO> _slot = new();
     private Dictionary<StratagemDataSO,List<ActionNode>> _action = new();
     private StratagemInputBuffer _buffer;
 
@@ -15,7 +14,6 @@ public class StratagemController : MonoBehaviour
     public void Inject(StratagemSlotSO slotSO, StratagemInputModel stratagemInput, SwitchInputModel switchInput, IStratagemFactory factory)
     {
         _action = factory.Create(slotSO);
-        _slot = slotSO.StratagemData;
         _buffer = new(stratagemInput, switchInput, _action);
     }
 }

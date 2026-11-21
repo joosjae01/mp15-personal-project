@@ -6,8 +6,10 @@ public sealed class ACreation : StratagemActionSO
 {
     public override void Enter(ActionContext context)
     {
-        GameObject prefab = Instantiate(context.ThrownPrefab, context.Caster.transform.position, context.Caster.transform.rotation);
-        context.Thrown = prefab.GetComponent<Rigidbody>();
+        IPoolable creation = context.PoolService.Take(context.CreationPrefab);
+        creation.GameObject.transform.SetPositionAndRotation(context.Caster.transform.position, context.Caster.transform.rotation);
+        creation.GameObject.TryGetComponent<Rigidbody>(out context.Thrown);
+        if(context.Thrown != null) context.Thrown.linearVelocity = Vector3.zero;
         Debug.Log($"{name} : 생성 액션 확인");
     }
 }

@@ -4,10 +4,10 @@ using VContainer;
 public class TargetFactory : ITargetFactory
 {
     private PlayerDataModel _playerData;
-    private EnemySpawner _spawner;
+    private ISpawner _spawner;
 
     [Inject]
-    public TargetFactory(PlayerDataModel playerData, EnemySpawner spawner)
+    public TargetFactory(PlayerDataModel playerData, ISpawner spawner)
     {
         _playerData = playerData;
         _spawner = spawner;

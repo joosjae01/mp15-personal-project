@@ -5,7 +5,7 @@ using VContainer;
 public class InputFactory : IInputFactory
 {
     [Inject] private PlayerInputModel _playerInputModel;
-    [Inject] private WeaponInputModel _weaponInputModel;
+    [Inject] private WeaponInputModel _stratagemInputModel;
     [Inject] private StratagemInputModel _strataInputModel;
     [Inject] private SwitchInputModel _switchInputModel;
 
@@ -15,7 +15,7 @@ public class InputFactory : IInputFactory
         if (context.Device == InputDevice.KBM)
         {
             temp.Add(new PlayerKBM(context.Basic, _playerInputModel));
-            temp.Add(new WeaponKBM(context.Basic, _weaponInputModel));
+            temp.Add(new WeaponKBM(context.Basic, _stratagemInputModel));
             temp.Add(new SwitchKBM(context.Switch, _switchInputModel));
             temp.Add(new StratagemKBM(context.Stratagem, _strataInputModel));
 

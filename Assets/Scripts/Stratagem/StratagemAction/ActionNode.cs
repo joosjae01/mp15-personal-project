@@ -5,6 +5,7 @@ using UnityEngine;
 public class ActionNode
 {
     public ActionContext Context { get; set; }
+    public ActionStruct Struct { get; set; }
     private event Action<ActionContext> _onExited;
     private StratagemActionSO _actionSO;
     private WaitForSeconds _delay;
@@ -14,27 +15,35 @@ public class ActionNode
         _actionSO = actionSO;
     }
 
+    public void Perform()
+    {
+        Context = new ActionContext(Struct);
+        Enter(Context);
+    }
+
     public void Enter(ActionContext context)
     {
         _actionSO.Enter(context);
-        if(context.Caster != null) context.Caster.StartCoroutine(DelayRoutine());
+
+        if (_actionSO.Delay != 0) context.Caster.StartCoroutine(DelayRoutine(context));
+        else Exit(context);
+    }
+
+    private IEnumerator DelayRoutine(ActionContext context)
+    {
+        _delay = new WaitForSeconds(_actionSO.Delay);
+        yield return _delay;
         Exit(context);
     }
 
-    private IEnumerator DelayRoutine()
+    public void Exit(ActionContext context)
     {
-        if(_actionSO.Delay != 0)
-        {
-            _delay = new WaitForSeconds(_actionSO.Delay);
-            yield return _delay;
-        }
-
-        yield return null;
+        _onExited?.Invoke(context);
     }
-
-    public void Exit(ActionContext context) => _onExited?.Invoke(context);
-    public void Link(ActionNode prev) => prev.AddListener(Enter);
-
+    public void Link(ActionNode prev)
+    {
+        prev.AddListener(Enter);
+    }
     public void AddListener(Action<ActionContext> action) => _onExited += action;
     public void RemoveListener(Action<ActionContext> action) => _onExited -= action;
     public void RemoveAllListener() => _onExited = null;

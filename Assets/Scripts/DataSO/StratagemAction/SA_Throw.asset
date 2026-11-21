@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec24fca231ef0204caab6dc0fb835647, type: 3}
   m_Name: SA_Throw
   m_EditorClassIdentifier: Assembly-CSharp::AThrow
-  Delay: 0
+  Delay: 2
   _forwardForce: 10
   _upwardForce: 5
+  _lifeTime: 2

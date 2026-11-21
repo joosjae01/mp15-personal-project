@@ -14,17 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StratagemDataSO
   Name: "\uC12C\uAD11 \uC9C0\uB8B0"
   Desc: "\uC9C0\uC810\uC5D0 \uAE30\uC808\uC744 \uBC1C\uC0DD\uC2DC\uD0A8\uB2E4"
-  CoolDown: 0
+  CoolDown: 30
+  Damage: 0
   Icon: {fileID: 0}
+  Creation: {fileID: 4996084466630847820, guid: 499989cb03a7c7147a1ff3e7efbcdcb4, type: 3}
   Type: 1
   Command: 02000000020000000100000004000000
-  Context:
-    Caster: {fileID: 0}
-    Target: {fileID: 0}
-    ThrownPrefab: {fileID: 1008350967923335596, guid: 82ac7b4638b1d5949add538efe4c2281, type: 3}
-    Thrown: {fileID: 0}
-    Type: 0
-    TargetPos: {x: 0, y: 0, z: 0}
   Action:
   - {fileID: 11400000, guid: f0e5473405f7d954a947010d0663c221, type: 2}
   - {fileID: 11400000, guid: d930203ce2a3c974d83be8db266121c5, type: 2}
+  - {fileID: 11400000, guid: 6432cfa958c7f9646ba1f8c88e64e117, type: 2}

@@ -1,6 +1,7 @@
 using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Pool;
 using VContainer;
 
@@ -18,7 +19,6 @@ public class EnemyController : MonoBehaviour, IPoolable
     public ObjectPool<IPoolable> Source { get; private set; }
     public IDamageable EnemyHealth { get; private set; }
     public GameObject GameObject { get; private set; }
-
     private EnemyBoardController _boardController;
 
     [Inject]
@@ -36,6 +36,8 @@ public class EnemyController : MonoBehaviour, IPoolable
 
     private void ResetData()
     {
+        Animator.SetBool("IsDead", false);
+        BehaviorAgent.SetVariableValue<bool>("IsDead", false);
         DataModel.Reset(_dataSO);
         DataModel.IsKilled.RemoveAllListener();
     }

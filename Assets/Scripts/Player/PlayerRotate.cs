@@ -14,6 +14,7 @@ public class PlayerRotate : MonoBehaviour
 
     private void Look(Vector3 lookInput)
     {
+        lookInput.y = 0;
         transform.LookAt(lookInput);
     }
 

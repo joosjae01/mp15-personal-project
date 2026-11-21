@@ -4,10 +4,8 @@ using VContainer.Unity;
 
 public class MissionLifetimeScope : LifetimeScope
 {
+    [SerializeField] MissionBoxSO _missionBox;
     [SerializeField] PlayerDataSO _playerDataSO;
-    [SerializeField] WeaponSlotSO _weaponSlotSO;
-    [SerializeField] StratagemSlotSO _stratagemSlotSO;
-    [SerializeField] MissionDataSO _missionDataSO;
 
     [SerializeField] private SoundService _soundService;
     [SerializeField] private PoolService _poolService;
@@ -18,12 +16,10 @@ public class MissionLifetimeScope : LifetimeScope
         builder.Register<IPauseService, PauseService>(Lifetime.Singleton);
         builder.RegisterComponent(_soundService).As<ISoundService>();
         builder.RegisterComponent(_poolService).As<IPoolService>();
-        
-        //SO 
+
+        //SO
+        builder.RegisterInstance(_missionBox);
         builder.RegisterInstance(_playerDataSO);
-        builder.RegisterInstance(_weaponSlotSO);
-        builder.RegisterInstance(_stratagemSlotSO);
-        builder.RegisterInstance(_missionDataSO);
 
         //DataModel
         builder.Register<PlayerDataModel>(Lifetime.Scoped);

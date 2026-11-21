@@ -9,4 +9,5 @@ public class BasicInputAction : ScriptableObject
     public InputActionReference Swap;
     public InputActionReference Fire;
     public InputActionReference Reload;
+    public InputActionReference Interact;
 }

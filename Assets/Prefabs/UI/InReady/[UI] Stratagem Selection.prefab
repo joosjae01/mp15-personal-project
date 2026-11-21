@@ -619,6 +619,7 @@ MonoBehaviour:
   - {fileID: 7357770714858612733}
   - {fileID: 439847622824467286}
   _null: {fileID: 21300000, guid: 01e51d292821733459e3948621197a74, type: 3}
+  _confirm: {fileID: 2904157259307101742}
 --- !u!1 &997234770329950828
 GameObject:
   m_ObjectHideFlags: 0

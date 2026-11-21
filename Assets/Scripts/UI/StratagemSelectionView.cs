@@ -18,17 +18,20 @@ public class StratagemSelectionView : MonoBehaviour, IView
     [SerializeField] private List<TextMeshProUGUI> _stratagemNames;
     [SerializeField] private List<TextMeshProUGUI> _stratagemDescs;
     [SerializeField] private Sprite _null;
+    [SerializeField] private Button _confirm;
 
     private IObjectResolver _resolver;
     private ReadyStratagemVM _vm;
+    private StratagemSlotSO _slotSO;
     private Dictionary<StratagemDataSO, IView> _viewDict = new();
+    private bool _isCreated;
 
     [Inject]
     public void Inject(ReadyStratagemVM vm, StratagemSlotSO slotSO, IObjectResolver resolver)
     {
         _vm = vm;
         _resolver = resolver;
-        SetDict(slotSO);
+        _slotSO = slotSO;
     }
 
     private void SetDelivery(bool isChanged)
@@ -77,7 +80,9 @@ public class StratagemSelectionView : MonoBehaviour, IView
 
     public void Hide()
     {
+        _confirm.onClick.RemoveListener(Hide);
         gameObject.SetActive(false);
+
         foreach (KeyValuePair<StratagemDataSO, IView> key in _viewDict)
         {
             key.Value.RemoveListener(SetDelivery);
@@ -88,6 +93,23 @@ public class StratagemSelectionView : MonoBehaviour, IView
     {
         gameObject.SetActive(true);
         SetDelivery(true);
+
+        _confirm.onClick.RemoveListener(Hide);
+        _confirm.onClick.AddListener(Hide);
+
+        if (!_isCreated)
+        {
+            SetDict(_slotSO);
+            _isCreated = true;
+        }
+        else
+        {
+            foreach(KeyValuePair<StratagemDataSO, IView> pair in _viewDict)
+            {
+                pair.Value.AddListener(SetDelivery);
+            }
+        }
+        
     }
 
     public void AddListener(Action<bool> action)

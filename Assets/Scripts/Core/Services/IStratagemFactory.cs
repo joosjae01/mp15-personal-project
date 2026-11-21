@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface IStratagemFactory
 {
-    public Dictionary<StratagemDataSO, List<ActionNode>> Create(StratagemSlotSO slotSO);
+    public Dictionary<StratagemDataSO, List<ActionNode>> Create(List<StratagemDataSO> slotSO);
 }

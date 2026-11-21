@@ -17,13 +17,16 @@ public class MissionController : MonoBehaviour
     public event Action<ITarget> OnTargetStarted;
     
     [Inject]
-    public void Inject(MissionDataSO dataSO, ITargetFactory factory, ISoundService soundService, PlayerDataModel playerData)
+    public void Inject(MissionBoxSO boxSO, ITargetFactory factory, ISoundService soundService, PlayerDataModel playerData)
     {
         _playerData = playerData;
         _soundService = soundService;
-        _targetQueue = factory.Create(dataSO.TargetContextList);
-        DataModel = new MissionDataModel(dataSO);
+        _targetQueue = factory.Create(boxSO.TargetList);
+        DataModel = new MissionDataModel(boxSO.Data);
+    }
 
+    private void Start()
+    {
         InitTarget();
     }
 
@@ -51,7 +54,11 @@ public class MissionController : MonoBehaviour
         {
             Debug.Log($"{name} : [{_currentTarget.Name}] 임무 완수");
             _currentTarget.IsCompleted.RemoveListener(StartNextTarget);
-            if (_targetQueue.Count == 0) DataModel.IsCompleted.Value = true;
+            if (_targetQueue.Count == 0)
+            {
+                DataModel.IsCompleted.Value = true;
+                Debug.Log("모든 임무 완수");
+            }
             else
             {
                 _currentTarget = _targetQueue.Dequeue();

@@ -17,8 +17,9 @@ public class TargetFactory : ITargetFactory
     {
         Queue<ITarget> targetQueue = new();
 
-        foreach(TargetContext context in contextList)
+        foreach (TargetContext origin in contextList)
         {
+            TargetContext context = origin;
             context.PlayerData = _playerData;
             context.Spawner = _spawner;
 

@@ -7,6 +7,7 @@ public class PlayerKBM : IInputHandler
     private PlayerInputModel _inputModel;
     private InputActionReference _moveInput;
     private InputActionReference _lookInput;
+    private InputActionReference _interactInput;
     private LayerMask _targetLayer;
 
     public InputType Type => InputType.Combat;
@@ -16,6 +17,7 @@ public class PlayerKBM : IInputHandler
         _inputModel = inputModel;
         _moveInput = dataSO.Move;
         _lookInput = dataSO.Look;
+        _interactInput = dataSO.Interact;
         _targetLayer = LayerMask.GetMask("Ground");
     }
 
@@ -29,25 +31,34 @@ public class PlayerKBM : IInputHandler
 
     private void StartMove(InputAction.CallbackContext context) => _inputModel.IsMoving.Value = true;
     private void StopMove(InputAction.CallbackContext context) => _inputModel.IsMoving.Value = false;
+    private void OnInteract(InputAction.CallbackContext context)
+    {
+        _inputModel.OnInteract.Value = true;
+        _inputModel.OnInteract.Value = false;
+    }
 
     public void Enable()
     {
         _moveInput.action.Enable();
         _lookInput.action.Enable();
+        _interactInput.action.Enable();
 
         _moveInput.action.performed += GetMoveInput;
         _moveInput.action.performed += StartMove;
         _moveInput.action.canceled += StopMove;
         _lookInput.action.performed += GetLookInput;
+        _interactInput.action.performed += OnInteract;
     }
     public void Disable()
     {
         _moveInput.action.Disable();
         _lookInput.action.Disable();
+        _interactInput.action.Disable();
 
         _moveInput.action.performed -= GetMoveInput;
         _moveInput.action.performed -= StartMove;
         _moveInput.action.canceled -= StopMove;
         _lookInput.action.performed -= GetLookInput;
+        _interactInput.action.performed -= OnInteract;
     }
 }

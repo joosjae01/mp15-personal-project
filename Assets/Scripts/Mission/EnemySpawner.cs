@@ -33,25 +33,40 @@ public class EnemySpawner : MonoBehaviour, ISpawner
 
     public void StartSpawn(Action<bool> action)
     {
+        _spawnTable.Clear();
         SetTable();
         _OnKilled = action;
+        _elapsed = 0f;
         _isActivated = true;
-        
+
+        Debug.Log("몬스터 소환 시작");
+
+        foreach (KeyValuePair<GameObject, EnemyController> enemy in _currentEnemies)
+        {
+            if (enemy.Value != null && enemy.Value.gameObject.activeInHierarchy)
+            {
+                BindEnemy(enemy.Value);
+            }
+        }
     }
 
     public void StopSpawn()
     {
+        Debug.Log("StopSpawn 호출");
         _OnKilled = null;
-        foreach(KeyValuePair<GameObject, EnemyController> enemy in _currentEnemies)
-        {
-            enemy.Value.DataModel.IsKilled.RemoveAllListener();
-        }
         _isActivated = false;
+        foreach (KeyValuePair<GameObject, EnemyController> enemy in _currentEnemies)
+        {
+            if (enemy.Value != null)
+            {
+                enemy.Value.DataModel.IsKilled.RemoveAllListener();
+            }
+        }
     }
 
     private void SetTable()
     {
-        foreach(SpawnDataSO dataSO in _spawnDataSO)
+        foreach (SpawnDataSO dataSO in _spawnDataSO)
         {
             if (!_spawnTable.ContainsKey(dataSO.Weight))
             {
@@ -65,14 +80,14 @@ public class EnemySpawner : MonoBehaviour, ISpawner
 
     private bool TryGetPoint(out Vector3 point)
     {
-        for(int i = 0; i < _tryCount; i++)
+        for (int i = 0; i < _tryCount; i++)
         {
             Vector2 dir = UnityEngine.Random.insideUnitCircle.normalized;
             float dist = UnityEngine.Random.Range(_minRadius, _maxRadius);
             Vector3 candidate = _playerController.transform.position + new Vector3(dir.x, 0f, dir.y) * dist;
 
             NavMeshHit hit;
-            if(NavMesh.SamplePosition(candidate, out hit, 2f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(candidate, out hit, 2f, NavMesh.AllAreas))
             {
                 point = hit.position;
                 return true;
@@ -106,11 +121,26 @@ public class EnemySpawner : MonoBehaviour, ISpawner
                 enemy.NavMeshAgent.enabled = true;
                 enemy.NavMeshAgent.Warp(pos);
 
-                enemy.DataModel.IsKilled.AddListener(_OnKilled);
-                
+                BindEnemy(enemy);
+
+                Debug.Log($"스폰: {enemy.name}, _OnKilled null? {_OnKilled == null}, IsKilled={enemy.DataModel.IsKilled.Value}");
+
                 _currentEnemies[enemy.gameObject] = enemy;
             }
         }
+    }
+
+    private void BindEnemy(EnemyController enemy)
+    {
+        enemy.DataModel.IsKilled.RemoveAllListener();
+        enemy.DataModel.IsKilled.Value = false;
+        enemy.DataModel.IsKilled.AddListener(_OnKilled);
+        enemy.DataModel.IsKilled.AddListener(_ => RemoveEnemy(enemy.gameObject));
+    }
+
+    private void RemoveEnemy(GameObject enemy)
+    {
+        _currentEnemies.Remove(enemy);
     }
 
     private int GetIndex()

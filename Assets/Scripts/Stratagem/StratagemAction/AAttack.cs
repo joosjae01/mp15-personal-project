@@ -5,8 +5,6 @@ public class AAttack : StratagemActionSO
 {
     public override void Enter(ActionContext context)
     {
-        Debug.Log(context.Targets.Count);
-
         if (context.Thrown != null)
         {
             IPoolable poolable;

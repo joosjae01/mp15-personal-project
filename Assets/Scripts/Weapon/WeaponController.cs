@@ -11,11 +11,11 @@ public class WeaponController : MonoBehaviour
     private WeaponSlot _slot;
 
     [Inject]
-    public void Inject(WeaponSlotSO dataSO, WeaponInputModel inputModel, IWeaponFactory factory)
+    public void Inject(MissionBoxSO boxSO, WeaponInputModel inputModel, IWeaponFactory factory)
     {
 
         List<IWeapon> slot = new();
-        foreach (WeaponContext context in dataSO.WeaponContext)
+        foreach (WeaponContext context in boxSO.Weapons)
         {
             IWeapon weapon = factory.Create(context);
             slot.Add(weapon);

@@ -18,4 +18,4 @@ MonoBehaviour:
     Count: 3
   - EnemyPrefab: {fileID: 5717399120404681861, guid: 00f94e7d7d711d94b8cfeb9340b5703c, type: 3}
     Count: 2
-  Weight: 3
+  Weight: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using VContainer;
 using VContainer.Unity;
 
 public class StratagemInputBuffer : IStartable, IDisposable
@@ -22,12 +23,13 @@ public class StratagemInputBuffer : IStartable, IDisposable
     public event Action<StratagemDataSO> OnDropped;
     public event Action OnReset;
 
-    public StratagemInputBuffer(StratagemInputModel stratagemInput, SwitchInputModel switchInput, StratagemCoolDown coolDown, StratagemSlotSO slotSO, IStratagemFactory factory)
+    [Inject]
+    public StratagemInputBuffer(StratagemInputModel stratagemInput, SwitchInputModel switchInput, StratagemCoolDown coolDown, MissionBoxSO boxSO, IStratagemFactory factory)
     {
         _stratagemInput = stratagemInput;
         _switchInput = switchInput;
         _coolDown = coolDown;
-        _actionDict = factory.Create(slotSO);
+        _actionDict = factory.Create(boxSO.Staratgems);
         Stratagems = new List<StratagemDataSO>(_actionDict.Keys);
     }
 

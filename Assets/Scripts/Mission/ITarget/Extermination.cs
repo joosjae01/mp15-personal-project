@@ -11,7 +11,7 @@ public class Extermination : ITarget
     public string Condition => $"처치 수 : {CurrentCount} / {GoalCount}";
 
     private ISpawner _spawner;
-    private PlayerDataModel _playerData; 
+    private PlayerDataModel _playerData;
     public int GoalCount;
     public int CurrentCount;
 
@@ -42,12 +42,11 @@ public class Extermination : ITarget
 
     public void IncreaseCount(bool IsKilled)
     {
-        if (IsKilled)
-        {
-            CurrentCount++;
-            OnProgress?.Invoke();
-        }
-        if(CurrentCount == GoalCount)
+        if (!IsKilled || IsCompleted.Value) return;
+        CurrentCount++;
+        OnProgress?.Invoke();
+
+        if (CurrentCount >= GoalCount)
         {
             Complete();
         }
@@ -61,8 +60,10 @@ public class Extermination : ITarget
 
     public void Complete()
     {
-        IsCompleted.Value = true;
+        if (IsCompleted.Value) return;
+
         _spawner.StopSpawn();
+        IsCompleted.Value = true;
         _playerData.IsDead.RemoveListener(CheckAlive);
     }
 

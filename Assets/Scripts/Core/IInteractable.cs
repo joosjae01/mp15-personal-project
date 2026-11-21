@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class IInteractable
+public interface IInteractable
 {
-    
+    public string Desc { get; }
+    public void Interact();
 }

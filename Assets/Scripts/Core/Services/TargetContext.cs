@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class TargetContext
+public struct TargetContext
 {
     public string Name;
     public string Desc;

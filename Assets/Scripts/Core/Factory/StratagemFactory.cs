@@ -10,12 +10,12 @@ public class StratagemFactory : IStratagemFactory
     [Inject] private IPoolService _poolService;
     [Inject] private ISpawner _spawner;
 
-    public Dictionary<StratagemDataSO, List<ActionNode>> Create(StratagemSlotSO slotSO)
+    public Dictionary<StratagemDataSO, List<ActionNode>> Create(List<StratagemDataSO> slotSO)
     {
         Dictionary<StratagemDataSO, List<ActionNode>> dict = new();
         WeaponSlot weaponSlot = _stratagemController.GetWeaponSlot();
 
-        foreach (StratagemDataSO dataSO in slotSO.StratagemData)
+        foreach (StratagemDataSO dataSO in slotSO)
         {
             List<ActionNode> node = new();
             foreach (StratagemActionSO actionSO in dataSO.Action)

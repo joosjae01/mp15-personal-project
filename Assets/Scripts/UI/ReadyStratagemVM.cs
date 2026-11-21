@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
-public class ReadyStratagemVM : MonoBehaviour, IViewModel
+public class ReadyStratagemVM : IViewModel
 {
     private List<StratagemDataSO> _delivery = new();
     private List<StratagemDataSO> _slotSO = new();
@@ -16,16 +16,19 @@ public class ReadyStratagemVM : MonoBehaviour, IViewModel
     }
 
     public List<StratagemDataSO> GetDelivery() => _delivery;
-    public void AddDataSO(int index)
+    public bool AddDataSO(int index)
     {
-        if (_delivery.Count == _max) return;
-        _slotSO.Add(_slotSO[index]);
+        if (_delivery.Count == _max) return false;
+        if (_delivery.Contains(_slotSO[index])) return false;
+        _delivery.Add(_slotSO[index]);
+        return true;
     }
 
-    public void RemoveDataSO(int index)
+    public bool RemoveDataSO(int index)
     {
-        if (_delivery.Count <= 0) return;
-        _slotSO.Remove(_slotSO[index]);
+        if (_delivery.Count <= 0) return false;
+        _delivery.Remove(_slotSO[index]);
+        return true;
     }
 
     public string GetName(int index) => _slotSO[index].Name;

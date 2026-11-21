@@ -7,26 +7,26 @@ public class PlayerWeaponRigger : MonoBehaviour
     [SerializeField] private TwoBoneIKConstraint _leftHand;
     [SerializeField] private TwoBoneIKConstraint _rightHand;
     [SerializeField] private RigBuilder _rig;
-    [SerializeField] private Transform _weaponPivot;
+    [SerializeField] private Transform _stratagemPivot;
     private Dictionary<GameObject, RiggingTransform> _rigDict = new();
-    private Dictionary<GameObject, GameObject> _weaponDict = new();
+    private Dictionary<GameObject, GameObject> _stratagemDict = new();
 
     public void CreateWeapon(GameObject prefab)
     {
-        GameObject weapon = Instantiate(prefab, _weaponPivot);
+        GameObject weapon = Instantiate(prefab, _stratagemPivot);
         weapon.SetActive(false);
-        _weaponDict.Add(prefab, weapon);
+        _stratagemDict.Add(prefab, weapon);
         _rigDict.Add(prefab, weapon.GetComponent<RiggingTransform>());
     }
 
     public void ActiveWeapon(GameObject prefab)
     {
-        _weaponDict[prefab].SetActive(true);
+        _stratagemDict[prefab].SetActive(true);
     }
 
     public void DeactiveWeapon(GameObject prefab)
     {
-        _weaponDict[prefab].SetActive(false);
+        _stratagemDict[prefab].SetActive(false);
     }
 
     public void ApplyRig(GameObject prefab)

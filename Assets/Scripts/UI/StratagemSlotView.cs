@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ public class StratagemSlotView : MonoBehaviour, IView
 
     [Inject] private ReadyStratagemVM _vm;
     private int _index;
-    public bool IsSelected;
+    public ObservableProperty<bool> IsSelected;
 
     public void Create(int index)
     {
@@ -22,20 +23,25 @@ public class StratagemSlotView : MonoBehaviour, IView
         SetImage();
         SetDesc();
         SetCoolDown();
-        IsSelected = false;
+        IsSelected = new(false);
+        _button.onClick.AddListener(Select);
     }
 
     public void Select()
     {
-        if (!IsSelected)
+        if (!IsSelected.Value)
         {
-            _vm.AddDataSO(_index);
-            IsSelected = true;
+            if (_vm.AddDataSO(_index))
+            {
+                IsSelected.Value = true;
+            }
         }
         else
         {
-            _vm.RemoveDataSO(_index);
-            IsSelected = false;
+            if (_vm.RemoveDataSO(_index))
+            {
+                IsSelected.Value = false;
+            }
         }
     }
 
@@ -69,5 +75,15 @@ public class StratagemSlotView : MonoBehaviour, IView
     {
         _button.onClick.RemoveListener(Select);
         gameObject.SetActive(false);
+    }
+
+    public void AddListener(Action<bool> action)
+    {
+        IsSelected.AddListener(action);
+    }
+
+    public void RemoveListener(Action<bool> action)
+    {
+        IsSelected.RemoveListener(action);
     }
 }

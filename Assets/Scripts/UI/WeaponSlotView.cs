@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class WeaponSlotView : MonoBehaviour, IView
 
     [Inject] private ReadyWeaponVM _vm;
     private int _index;
-    public bool IsSelected;
+    public ObservableProperty<bool> IsSelected;
 
     public void Create(int index)
     {
@@ -21,20 +22,21 @@ public class WeaponSlotView : MonoBehaviour, IView
         SetName();
         SetImage();
         SetStatus();
-        IsSelected = false;
+        IsSelected = new(false);
+        _select.onClick.AddListener(Select);
     }
 
     public void Select()
     {
-        if (!IsSelected)
+        if (!IsSelected.Value)
         {
             _vm.AddContext(_index);
-            IsSelected = true;
+            IsSelected.Value = true;
         }
         else
         {
             _vm.RemoveContext(_index);
-            IsSelected = true;
+            IsSelected.Value = false;
         }
         
     }
@@ -60,5 +62,15 @@ public class WeaponSlotView : MonoBehaviour, IView
     {
         gameObject.SetActive(false);
         _select.onClick.RemoveListener(Select);
+    }
+
+    public void AddListener(Action<bool> action)
+    {
+        IsSelected.AddListener(action);
+    }
+
+    public void RemoveListener(Action<bool> action)
+    {
+        IsSelected.RemoveListener(action);
     }
 }

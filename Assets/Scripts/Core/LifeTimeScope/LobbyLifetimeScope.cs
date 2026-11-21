@@ -11,9 +11,15 @@ public class LobbyLifetimeScope : LifetimeScope
     {
         builder.RegisterInstance(_weaponSlotSO);
         builder.RegisterInstance(_stratagemSlotSO);
-
-        //Delivery UI 세팅
+        
+        // Delivery UI 세팅
         builder.Register<ReadyWeaponVM>(Lifetime.Scoped);
         builder.Register<ReadyStratagemVM>(Lifetime.Scoped);
+
+        // 팩토리 세팅
+        builder.Register<IViewFactory, ViewFactory>(Lifetime.Scoped);
+
+        builder.RegisterComponentInHierarchy<WeaponSelectionView>();
+        builder.RegisterComponentInHierarchy<StratagemSelectionView>();
     }
 }

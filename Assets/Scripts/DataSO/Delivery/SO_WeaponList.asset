@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7044b560143738c4f89a0bce4dc1b54e, type: 3}
   m_Name: SO_WeaponList
   m_EditorClassIdentifier: Assembly-CSharp::WeaponListSO
+  WeaponContext:
+  - Type: 0
+    DataSO: {fileID: 11400000, guid: ea689935acc678c4faf7ad4f6c76a169, type: 2}
+  - Type: 1
+    DataSO: {fileID: 11400000, guid: 61f0aa62761b71042b6c667a6f976038, type: 2}
+  - Type: 2
+    DataSO: {fileID: 11400000, guid: 9a5cfeda30531ee4e9d8738e708b184f, type: 2}

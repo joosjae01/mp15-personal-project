@@ -19,6 +19,7 @@ public class ReadyWeaponVM : IViewModel
     public void AddContext(int index)
     {
         if (_delivery.Count == _max) return;
+        if (_delivery.Contains(_dataList[index])) return;
         _delivery.Add(_dataList[index]);
     }
     public void RemoveContext(int index)
@@ -26,6 +27,7 @@ public class ReadyWeaponVM : IViewModel
         if (_delivery.Count <= 0) return;
         _delivery.Remove(_dataList[index]);
     }
+
     public string GetName(int index) => _dataList[index].DataSO.Name;
     public Sprite GetImage(int index) => _dataList[index].DataSO.Icon;
     public int GetPower(int index) => (int)_dataList[index].DataSO.Power;

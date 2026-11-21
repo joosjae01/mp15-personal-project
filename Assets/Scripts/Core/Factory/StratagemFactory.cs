@@ -6,14 +6,14 @@ public class StratagemFactory : IStratagemFactory
 {
     [Inject] private PlayerController _playerController;
     [Inject] private PlayerDataModel _playerData;
-    [Inject] private WeaponController _weaponController;
+    [Inject] private WeaponController _stratagemController;
     [Inject] private IPoolService _poolService;
     [Inject] private ISpawner _spawner;
 
     public Dictionary<StratagemDataSO, List<ActionNode>> Create(StratagemSlotSO slotSO)
     {
         Dictionary<StratagemDataSO, List<ActionNode>> dict = new();
-        WeaponSlot weaponSlot = _weaponController.GetWeaponSlot();
+        WeaponSlot weaponSlot = _stratagemController.GetWeaponSlot();
 
         foreach (StratagemDataSO dataSO in slotSO.StratagemData)
         {

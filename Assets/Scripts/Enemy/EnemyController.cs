@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour, IPoolable
     [field : SerializeField] public Animator Animator { get; private set; }
 
     [SerializeField] private EnemyDataSO _dataSO;
-    [SerializeField] private EnemyAttackBase _attackSO;
+    [SerializeField] private EnemyAttackBase _attackBase;
     [SerializeField] private EnemyHitEffect _enemyHitEffect;
     
     public PlayerController PlayerController { get; private set; }    
@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour, IPoolable
         DataModel = new(_dataSO);
         PlayerController = playerController;
         EnemyHealth = new EnemyHealth(this, DataModel);
-        _boardController = new EnemyBoardController(DataModel, _attackSO, playerController, this);
+        _boardController = new EnemyBoardController(DataModel, _attackBase, playerController, this);
         NavMeshAgent.enabled = false;
         _enemyHitEffect.Inject(poolService, DataModel);
     }

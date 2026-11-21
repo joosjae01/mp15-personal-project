@@ -1,23 +1,38 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 public class MissionController : MonoBehaviour
 {
     [SerializeField] private SoundDataSO _bgm;
     public MissionDataModel DataModel { get; private set; }
+    private PlayerDataModel _playerData;
     private Queue<ITarget> _targetQueue = new();
     private ITarget _currentTarget;
+    public ITarget CurrentTarget { get => _currentTarget; }
     private ISoundService _soundService;
+
+    public event Action<ITarget> OnTargetStarted;
     
     [Inject]
-    public void Inject(MissionDataSO dataSO, ITargetFactory factory, ISoundService soundService)
+    public void Inject(MissionDataSO dataSO, ITargetFactory factory, ISoundService soundService, PlayerDataModel playerData)
     {
+        _playerData = playerData;
         _soundService = soundService;
         _targetQueue = factory.Create(dataSO.TargetContextList);
         DataModel = new MissionDataModel(dataSO);
 
         InitTarget();
+    }
+
+    private void Update()
+    {
+        if(_currentTarget is ITickable)
+        {
+            (_currentTarget as ITickable).Tick();
+        }
     }
 
     private void InitTarget()
@@ -26,6 +41,7 @@ public class MissionController : MonoBehaviour
         _currentTarget = _targetQueue.Dequeue();
         _currentTarget.IsCompleted.AddListener(StartNextTarget);
         _currentTarget.Start();
+        OnTargetStarted?.Invoke(_currentTarget);
         Debug.Log($"{name} : [{_currentTarget.Name}] 임무 시작");
     }
 
@@ -41,6 +57,7 @@ public class MissionController : MonoBehaviour
                 _currentTarget = _targetQueue.Dequeue();
                 _currentTarget.IsCompleted.AddListener(StartNextTarget);
                 _currentTarget.Start();
+                OnTargetStarted?.Invoke(_currentTarget);
                 Debug.Log($"{name} : [{_currentTarget.Name}] 임무 시작");
             }
         }

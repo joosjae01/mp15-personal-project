@@ -62,7 +62,6 @@ public class StratagemInputBuffer : IStartable, IDisposable
             if (command.Value.Command.Count <= _count || command.Value.Command[_count] != result)
             {
                 toRemove.Add(command.Key);
-                Debug.Log($"{command.Value.Name} : 후보 탈락");
                 OnDropped?.Invoke(command.Value);
                 _elected = null;
             }
@@ -73,7 +72,6 @@ public class StratagemInputBuffer : IStartable, IDisposable
                 {
                     _elected = _actionDict[command.Value][0];
                     _electedSO = command.Value;
-                    Debug.Log($"{command.Value.Name} : 준비");
                 }
             }
         }

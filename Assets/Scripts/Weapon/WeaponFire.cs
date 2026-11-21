@@ -172,7 +172,6 @@ public class WeaponFire : MonoBehaviour
         _animation.Swap(true);
         _rigger.DeactiveWeapon(_currentWeapon.Model.Prefab);
         _rigger.DisApplyRig();
-        _animation.ChangeAnimation(_slot.CurrentWeapon.Model.AnimIndex);
         yield return _waitForSwap;
 
         if (next) _slot.Next();

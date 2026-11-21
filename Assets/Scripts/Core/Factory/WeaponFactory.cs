@@ -11,7 +11,7 @@ public class WeaponFactory : IWeaponFactory
         IWeapon temp = context.Type switch {
             WeaponType.Pistol => new Pistol(context, _soundService, _poolService),
             WeaponType.AssaultRifle => new AssaultRifle(context, _soundService, _poolService),
-            WeaponType.ShotGun => new ShotGun(context, _soundService),
+            WeaponType.ShotGun => new ShotGun(context, _soundService, _poolService),
             _ => null
         };
 

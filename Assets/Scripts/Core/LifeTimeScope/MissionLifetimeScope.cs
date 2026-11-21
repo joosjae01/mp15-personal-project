@@ -75,5 +75,6 @@ public class MissionLifetimeScope : LifetimeScope
         builder.RegisterComponentInHierarchy<PlayerHealthUI>();
         builder.RegisterComponentInHierarchy<PlayerWeaponUI>();
         builder.RegisterComponentInHierarchy<StratagemPanel>();
+        builder.RegisterComponentInHierarchy<MissionTrackerPanel>();
     }
 }

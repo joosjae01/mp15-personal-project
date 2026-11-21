@@ -18,12 +18,6 @@ public class ViewFactory : IViewFactory
                 (tempView as WeaponSlotView).Create(i);
                 tempDict[i] = tempView;
             }
-            else if (context.Type == ViewType.StratagemSlot)
-            {
-                tempView = _resolver.Instantiate(context.Prefab, context.Parent).GetComponent<StratagemSlotView>();
-                (tempView as StratagemSlotView).Create(i);
-                tempDict[i] = tempView;
-            }
         }
         return tempDict;
     }

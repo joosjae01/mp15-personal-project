@@ -5,7 +5,6 @@ using UnityEngine;
 public class WeaponDataSO : ScriptableObject
 {
     public string Name;
-    public int AnimationIndex;
     public GameObject Prefab;
     public GameObject VFX;
     public SoundDataSO SFX;

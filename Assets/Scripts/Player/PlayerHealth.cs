@@ -21,6 +21,7 @@ public class PlayerHealth : IDamageable
         }
         else
         {
+            _dataModel.CurrentHealth.Value = 0;
             _dataModel.IsDead.Value = true;
         }
     }

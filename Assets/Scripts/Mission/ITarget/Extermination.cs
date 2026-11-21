@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Extermination : ITarget
@@ -7,10 +8,14 @@ public class Extermination : ITarget
     public ObservableProperty<bool> IsCompleted { get; private set; }
     public ObservableProperty<bool> IsFailed { get; private set; }
 
+    public string Condition => $"처치 수 : {CurrentCount} / {GoalCount}";
+
     private ISpawner _spawner;
     private PlayerDataModel _playerData; 
     public int GoalCount;
     public int CurrentCount;
+
+    public event Action OnProgress;
 
     public Extermination(TargetContext context)
     {
@@ -40,6 +45,7 @@ public class Extermination : ITarget
         if (IsKilled)
         {
             CurrentCount++;
+            OnProgress?.Invoke();
         }
         if(CurrentCount == GoalCount)
         {

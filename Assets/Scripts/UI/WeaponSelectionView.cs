@@ -11,6 +11,7 @@ public class WeaponSelectionView : MonoBehaviour, IView
     [SerializeField] private GameObject _scrollPrefab;
     [SerializeField] private List<Image> _weaponIcons;
     [SerializeField] private List<TextMeshProUGUI> _weaponNames;
+    [SerializeField] private Sprite _null;
     
     private ReadyWeaponVM _vm;
     private IViewFactory _factory;
@@ -28,7 +29,7 @@ public class WeaponSelectionView : MonoBehaviour, IView
     {
         for(int i = 0; i < _weaponIcons.Count; i++)
         {
-            _weaponIcons[i].sprite = null;
+            _weaponIcons[i].sprite = _null;
             _weaponNames[i].text = null;
         }
 

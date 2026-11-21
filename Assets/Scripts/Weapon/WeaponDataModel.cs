@@ -20,8 +20,6 @@ public class WeaponDataModel
     public float Power { get; private set; }
     public float Range { get; private set; }
 
-    public int AnimIndex { get; private set; }
-
     public WeaponDataModel(WeaponDataSO dataSO)
     {
         Name = dataSO.Name;
@@ -42,7 +40,5 @@ public class WeaponDataModel
         CoolDown = 1 / FireRate;
         Power = dataSO.Power;
         Range = dataSO.Range;
-
-        AnimIndex = dataSO.AnimationIndex;
     }
 }

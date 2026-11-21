@@ -16,18 +16,18 @@ public class ReadyStratagemVM : IViewModel
     }
 
     public List<StratagemDataSO> GetDelivery() => _delivery;
-    public bool AddDataSO(int index)
+    public bool AddDataSO(StratagemDataSO dataSO)
     {
         if (_delivery.Count == _max) return false;
-        if (_delivery.Contains(_slotSO[index])) return false;
-        _delivery.Add(_slotSO[index]);
+        if (_delivery.Contains(dataSO)) return false;
+        _delivery.Add(dataSO);
         return true;
     }
 
-    public bool RemoveDataSO(int index)
+    public bool RemoveDataSO(StratagemDataSO dataSO)
     {
         if (_delivery.Count <= 0) return false;
-        _delivery.Remove(_slotSO[index]);
+        _delivery.Remove(dataSO);
         return true;
     }
 

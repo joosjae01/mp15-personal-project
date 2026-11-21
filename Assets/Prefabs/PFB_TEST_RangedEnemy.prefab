@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 696812211542312619}
   - component: {fileID: 2571962073127595279}
   - component: {fileID: 6034495470116401692}
+  - component: {fileID: -3816357451870815341}
   m_Layer: 6
   m_Name: PFB_TEST_RangedEnemy
   m_TagString: Untagged
@@ -85,7 +86,7 @@ MonoBehaviour:
   <NavMeshAgent>k__BackingField: {fileID: 696812211542312619}
   <Animator>k__BackingField: {fileID: 6602685458354732786}
   _dataSO: {fileID: 11400000, guid: 5475aa895c20212489c5071a909b989d, type: 2}
-  _attackSO: {fileID: 11400000, guid: 66d61f9e47f844741a9c49faa8e6e6bc, type: 2}
+  _attackBase: {fileID: -3816357451870815341}
   _enemyHitEffect: {fileID: 2888593094556197783}
 --- !u!114 &2888593094556197783
 MonoBehaviour:
@@ -176,6 +177,22 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &-3816357451870815341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5717399120404681861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17291c63f3d3fe24f83a7b28453dc6f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
+  _boxWidth: 0
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &6553377662281682450
 PrefabInstance:
   m_ObjectHideFlags: 0

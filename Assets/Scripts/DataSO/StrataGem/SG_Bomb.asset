@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SG_Bomb
   m_EditorClassIdentifier: Assembly-CSharp::StratagemDataSO
   Name: "\uD3ED\uD0C4"
-  Desc: "\uD22C\uCC99 \uC9C0\uC810\uC5D0 \uC801\uB2F9\uD55C \uD53C\uD574\uB97C \uC785\uD78C\uB2E4"
+  Desc: "\uD22C\uCC99 \uC9C0\uC810\uC5D0 \uD53C\uD574\uB97C \uC785\uD78C\uB2E4"
   CoolDown: 5
   Damage: 100
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 6bf16cd20ff67704ca43a7f1c60b66cb, type: 3}
   Creation: {fileID: 4996084466630847820, guid: 499989cb03a7c7147a1ff3e7efbcdcb4, type: 3}
   Type: 0
   Command: 040000000400000002000000

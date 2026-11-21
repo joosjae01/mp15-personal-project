@@ -8,21 +8,18 @@ public class StratagemSlotView : MonoBehaviour, IView
 {
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private Image _icon;
-    [SerializeField] private TextMeshProUGUI _desc;
-    [SerializeField] private TextMeshProUGUI _coolDown;
     [SerializeField] private Button _button;
 
     [Inject] private ReadyStratagemVM _vm;
-    private int _index;
-    public ObservableProperty<bool> IsSelected;
 
-    public void Create(int index)
+    public ObservableProperty<bool> IsSelected;
+    private StratagemDataSO _dataSO;
+
+    public void Create(StratagemDataSO dataSO)
     {
-        _index = index;
-        SetName();
-        SetImage();
-        SetDesc();
-        SetCoolDown();
+        _dataSO = dataSO;
+        _name.text = dataSO.Name;
+        _icon.sprite = dataSO.Icon;
         IsSelected = new(false);
         _button.onClick.AddListener(Select);
     }
@@ -31,38 +28,18 @@ public class StratagemSlotView : MonoBehaviour, IView
     {
         if (!IsSelected.Value)
         {
-            if (_vm.AddDataSO(_index))
+            if (_vm.AddDataSO(_dataSO))
             {
                 IsSelected.Value = true;
             }
         }
         else
         {
-            if (_vm.RemoveDataSO(_index))
+            if (_vm.RemoveDataSO(_dataSO))
             {
                 IsSelected.Value = false;
             }
         }
-    }
-
-    private void SetName()
-    {
-        _name.text = _vm.GetName(_index);
-    }
-
-    private void SetImage()
-    {
-        _icon.sprite = _vm.GetImage(_index);
-    }
-
-    private void SetDesc()
-    {
-        _desc.text = _vm.GetDesc(_index);
-    }
-
-    private void SetCoolDown()
-    {
-        _coolDown.text = "CoolDown : " + _vm.GetCoolDown(_index).ToString();
     }
 
     public void Show()

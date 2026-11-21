@@ -10,7 +10,7 @@ public class PlayerHealthUI : MonoBehaviour
     private void OnEnable() => BindEvents();
     private void OnDisable() => UnBindEvents();
 
-    private void RefreshBar(int amount) => _healthBar.fillAmount = (amount / _playerData.MaxHealth) * 100;
+    private void RefreshBar(int amount) => _healthBar.fillAmount = (float)amount / _playerData.MaxHealth;
 
     private void BindEvents() => _playerData.CurrentHealth.AddListener(RefreshBar);
     private void UnBindEvents() => _playerData.CurrentHealth.RemoveListener(RefreshBar);

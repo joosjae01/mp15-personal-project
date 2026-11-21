@@ -13,15 +13,14 @@ MonoBehaviour:
   m_Name: SO_ShotGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   Name: "\uC0F7\uAC74"
-  AnimationIndex: 0
   Prefab: {fileID: 6182611266577191475, guid: 5ed3a7ce1f64b4642949441536ed5e9c, type: 3}
-  VFX: {fileID: 0}
+  VFX: {fileID: 6760226890695019780, guid: 31f165ce69efa2c4d8cec51491198de2, type: 3}
   SFX: {fileID: 11400000, guid: a7d851dbb20f4f748881266d084ad4e6, type: 2}
   Icon: {fileID: 21300000, guid: 8fdd84e5e2a31fb4aa4b364b85e7cc9d, type: 3}
   Power: 80
   FireRate: 1
-  Stability: 0
+  Stability: 0.5
   MaxMagazine: 8
   AmmoClip: 2
-  Range: 0
+  Range: 4
   ReloadTime: 2

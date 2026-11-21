@@ -17,7 +17,7 @@ MonoBehaviour:
   Prefab: {fileID: 6716624388186796197, guid: 302cec1dd21112d4e81b08665002ee25, type: 3}
   VFX: {fileID: 6760226890695019780, guid: 31f165ce69efa2c4d8cec51491198de2, type: 3}
   SFX: {fileID: 11400000, guid: 88990f4b4ad0c634e8b1b59131c81e13, type: 2}
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: a8ec78caa6d71844aab3e06928806a26, type: 3}
   Power: 50
   FireRate: 2
   Stability: 0.05

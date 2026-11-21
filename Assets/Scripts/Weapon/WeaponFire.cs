@@ -18,7 +18,7 @@ public class WeaponFire : MonoBehaviour
 
     private float _elapsed;
     private bool _onSwap => _inputModel.OnSwap.Value;
-    private bool _onReload => _inputModel.IsReload.Value;
+    private bool _onReload => _reloadRoutine != null;
     private bool _isCoolOn => _elapsed >= _currentWeapon.Model.CoolDown;
     private bool _isEmpty => _currentWeapon.Model.CurrentMagazine.Value <= 0;
     private bool _canFire => _isCoolOn && !_isEmpty && !_onSwap && !_onReload;
@@ -66,27 +66,38 @@ public class WeaponFire : MonoBehaviour
                 _currentWeapon.Model.CurrentMagazine.Value--;
                 _animation.Fire(true);
                 _elapsed = 0.0f;
-            } 
-            
+            }
+
             else if (_isEmpty)
             {
-                StopFire();
+                _fireRoutine = null;
+                _animation.Fire(false);
+                yield break;
             }
-            
+
             yield return null;
         }
     }
 
     private void CheckReload(bool onReload)
     {
-        if (_currentWeapon.Model.AmmoClip <= 0)
+        if (onReload)
         {
-            _inputModel.IsReload.Value = false;
-            return;
+            if (_currentWeapon.Model.AmmoClip.Value <= 0 || _currentWeapon.Model.CurrentMagazine.Value >= _currentWeapon.Model.MaxMagazine.Value)
+            {
+                _inputModel.IsReload.Value = false;
+                return;
+            }
+
+
+            StartReload();
         }
-        if (onReload) StartReload();
-        else StopReload();
+        else
+        {
+            StopReload();
+        }
     }
+
     private void StartReload()
     {
         if (_reloadRoutine != null) return;
@@ -94,34 +105,55 @@ public class WeaponFire : MonoBehaviour
         _currentWeapon.Model.CurrentReload.Value = 0.0f;
         _reloadRoutine = StartCoroutine(ReloadRoutine());
     }
+
     private void StopReload()
     {
         if (_reloadRoutine == null) return;
+
         _animation.Reload(false);
         StopCoroutine(_reloadRoutine);
         _reloadRoutine = null;
+
+        _currentWeapon.Model.CurrentReload.Value = 0f;
+
+        if (_inputModel.IsFired.Value)
+            StartFire();
     }
+
     private IEnumerator ReloadRoutine()
     {
-        while (true)
+        while (_currentWeapon.Model.CurrentReload.Value < _currentWeapon.Model.ReloadTime)
         {
-            _currentWeapon.Model.CurrentReload.Value += Time.deltaTime;
-            if (_currentWeapon.Model.CurrentReload.Value >= _currentWeapon.Model.ReloadTime)
-            {
-                _currentWeapon.Model.CurrentReload.Value = 0.0f;
-                _currentWeapon.Model.CurrentMagazine.Value = _currentWeapon.Model.MaxMagazine.Value;
-                _inputModel.IsReload.Value = false;
-            }
-
             if (_onSwap)
             {
+                _currentWeapon.Model.CurrentReload.Value = 0f;
+                _reloadRoutine = null;
+                _animation.Reload(false);
                 _inputModel.IsReload.Value = false;
-                _currentWeapon.Model.CurrentReload.Value = 0.0f;
+
+                if (_inputModel.IsFired.Value)
+                    StartFire();
+
+                yield break;
             }
 
+            _currentWeapon.Model.CurrentReload.Value += Time.deltaTime;
             yield return null;
         }
+
+        _currentWeapon.Model.CurrentReload.Value = 0.0f;
+        _currentWeapon.Model.CurrentMagazine.Value = _currentWeapon.Model.MaxMagazine.Value;
+
+        _currentWeapon.Model.AmmoClip.Value--;
+
+        _reloadRoutine = null;
+        _animation.Reload(false);
+
+        _inputModel.IsReload.Value = false;
+
+        if (_inputModel.IsFired.Value) StartFire();
     }
+
     private void RefreshTime()
     {
         _elapsed += Time.deltaTime;
@@ -129,11 +161,12 @@ public class WeaponFire : MonoBehaviour
 
     private void CheckSwap(float value)
     {
-        if (_inputModel.OnSwap.Value) return;
-        if (value != 0) StartCoroutine(SwapRoutine());
+        if (_onSwap) return;
+        if (value > 0) StartCoroutine(SwapRoutine(true));
+        else if (value < 0) StartCoroutine(SwapRoutine(false));
     }
 
-    private IEnumerator SwapRoutine()
+    private IEnumerator SwapRoutine(bool next)
     {
         _inputModel.OnSwap.Value = true;
         _animation.Swap(true);
@@ -141,7 +174,10 @@ public class WeaponFire : MonoBehaviour
         _rigger.DisApplyRig();
         _animation.ChangeAnimation(_slot.CurrentWeapon.Model.AnimIndex);
         yield return _waitForSwap;
-        _slot.Next();
+
+        if (next) _slot.Next();
+        else _slot.Prev();
+
         _rigger.ActiveWeapon(_currentWeapon.Model.Prefab);
         _rigger.ApplyRig(_currentWeapon.Model.Prefab);
         _animation.Swap(false);
@@ -169,6 +205,6 @@ public class WeaponFire : MonoBehaviour
     {
         _inputModel.SwapValue.RemoveListener(CheckSwap);
         _inputModel.IsFired.RemoveListener(CheckFire);
-        _inputModel.IsReload.AddListener(CheckReload);
+        _inputModel.IsReload.RemoveListener(CheckReload);
     }
 }

@@ -65,9 +65,15 @@ public class MissionLifetimeScope : LifetimeScope
         builder.RegisterComponentInHierarchy<EnemySpawner>().As<ISpawner>();
 
         //Stratagem
-        builder.RegisterComponentInHierarchy<StratagemController>();
+        builder.Register<StratagemCoolDown>(Lifetime.Scoped);
+        builder.RegisterEntryPoint<StratagemInputBuffer>(Lifetime.Scoped).AsSelf();
 
         //Mission
         builder.RegisterComponentInHierarchy<MissionController>();
+
+        //UI
+        builder.RegisterComponentInHierarchy<PlayerHealthUI>();
+        builder.RegisterComponentInHierarchy<PlayerWeaponUI>();
+        builder.RegisterComponentInHierarchy<StratagemPanel>();
     }
 }

@@ -7,7 +7,9 @@ public class EnemyHealth : IDamageable
 {
     private EnemyController _controller;
     private EnemyDataModel _dataModel;
+
     private WaitForSeconds _waitForDelay;
+    private float _duration = 2f;
 
     public EnemyHealth(EnemyController controller, EnemyDataModel dataModel)
     {
@@ -22,9 +24,9 @@ public class EnemyHealth : IDamageable
         {
             _dataModel.IsKilled.Value = true;
             _controller.BehaviorAgent.SetVariableValue<bool>("IsDead", true);
-            AnimatorStateInfo state = _controller.Animator.GetCurrentAnimatorStateInfo(0);
-            float duration = state.length;
-            _waitForDelay = new WaitForSeconds(duration);
+            _controller.Animator.SetBool("IsDead", true);
+            
+            _waitForDelay = new WaitForSeconds(_duration);
             _controller.StartCoroutine(DieRoutine());
         }
     }

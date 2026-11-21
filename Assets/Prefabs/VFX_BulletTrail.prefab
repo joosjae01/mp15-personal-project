@@ -164,5 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1170454384cee0844a536d05b4ec71e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletTrail
-  _moveSpeed: 35
+  _moveSpeed: 60
   _renderer: {fileID: 3365734161865135644}

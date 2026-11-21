@@ -13,23 +13,27 @@ public class EnemyController : MonoBehaviour, IPoolable
 
     [SerializeField] private EnemyDataSO _dataSO;
     [SerializeField] private EnemyAttackBase _attackSO;
+    [SerializeField] private EnemyHitEffect _enemyHitEffect;
     
     public PlayerController PlayerController { get; private set; }    
     public EnemyDataModel DataModel { get; private set; }
     public ObjectPool<IPoolable> Source { get; private set; }
     public IDamageable EnemyHealth { get; private set; }
-    public GameObject GameObject { get; private set; }
+    public GameObject GameObject { get => gameObject; }
+    
     private EnemyBoardController _boardController;
+    private IPoolService _poolService;
 
     [Inject]
-    public void Inject(PlayerController playerController)
+    public void Inject(PlayerController playerController, IPoolService poolService)
     {
+        _poolService = poolService;
         DataModel = new(_dataSO);
         PlayerController = playerController;
         EnemyHealth = new EnemyHealth(this, DataModel);
         _boardController = new EnemyBoardController(DataModel, _attackSO, playerController, this);
         NavMeshAgent.enabled = false;
-        this.GameObject = this.gameObject;
+        _enemyHitEffect.Inject(poolService, DataModel);
     }
 
     private void OnDisable() => ResetData();

@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AVFX
   Delay: 0
   _VFX: {fileID: 639931572492007272, guid: ea478ed49d9d2bf4580814d90d66f7d3, type: 3}
+  _canChase: 0
+  _toMonster: 0

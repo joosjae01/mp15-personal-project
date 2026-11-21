@@ -20,7 +20,10 @@ public class AThrow : StratagemActionSO
     private IEnumerator EndRoutine(ActionContext context)
     {
         yield return new WaitForSeconds(_lifeTime);
-        context.TargetPos = context.Thrown.transform.position;
-        context.TargetPos.y = 0;
+        
+        Vector3 target = context.Thrown.transform.position;
+        target.y = 0;
+
+        context.TargetPos = target;
     }
 }

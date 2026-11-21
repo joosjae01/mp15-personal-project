@@ -14,6 +14,10 @@ public class PoolService : MonoBehaviour, IPoolService
     public void Inject(IObjectResolver resolver)
     {
         _resolver = resolver;
+    }
+
+    private void Start()
+    {
         Init();
     }
 

@@ -5,7 +5,7 @@ using VContainer;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] private WeaponFire _stratagemFire;
+    [SerializeField] private WeaponFire _weaponFire;
     [SerializeField] private Transform _muzzlePoint;
 
     private WeaponSlot _slot;
@@ -22,7 +22,7 @@ public class WeaponController : MonoBehaviour
         }
 
         _slot = new(slot);
-        _stratagemFire.SetWeapon(_slot);
+        _weaponFire.SetWeapon(_slot);
     }
 
     public WeaponSlot GetWeaponSlot()

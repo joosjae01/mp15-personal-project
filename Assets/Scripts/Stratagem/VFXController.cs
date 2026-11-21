@@ -25,6 +25,7 @@ public class VFXController : MonoBehaviour, IPoolable
 
     private void OnEnable()
     {
+        _target = null;
         _particle.Play();
         StartReturn();
     }

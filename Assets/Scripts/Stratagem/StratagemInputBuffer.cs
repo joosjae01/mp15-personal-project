@@ -23,6 +23,8 @@ public class StratagemInputBuffer : IStartable, IDisposable
     public event Action<StratagemDataSO> OnDropped;
     public event Action OnReset;
 
+    public bool IsBlocked { get; set; }
+
     [Inject]
     public StratagemInputBuffer(StratagemInputModel stratagemInput, SwitchInputModel switchInput, StratagemCoolDown coolDown, MissionBoxSO boxSO, IStratagemFactory factory)
     {
@@ -54,6 +56,7 @@ public class StratagemInputBuffer : IStartable, IDisposable
 
     private void CheckInput(Vector2 input)
     {
+        if(IsBlocked) return;
         Command result = GetInput(input);
         if (result == Command.INVALID) return;
         List<int> toRemove = new();
@@ -104,6 +107,8 @@ public class StratagemInputBuffer : IStartable, IDisposable
 
     public void PerformAction(bool active)
     {
+        if (IsBlocked) return;
+
         if (active) Init();
         if (!active && _elected != null)
         {

@@ -7,6 +7,7 @@ public class WeaponFire : MonoBehaviour
     [SerializeField] private float _swapDelay;
 
     private PlayerAnimation _animation;
+    private PlayerController _player;
     private PlayerWeaponRigger _rigger;
     private WeaponInputModel _inputModel;
     private WeaponController _controller;
@@ -14,6 +15,7 @@ public class WeaponFire : MonoBehaviour
     private Coroutine _fireRoutine;
     private Coroutine _reloadRoutine;
     private WaitForSeconds _waitForSwap;
+    private IPauseService _pause;
     private IWeapon _currentWeapon => _slot.CurrentWeapon;
 
     private float _elapsed;
@@ -21,7 +23,8 @@ public class WeaponFire : MonoBehaviour
     private bool _onReload => _reloadRoutine != null;
     private bool _isCoolOn => _elapsed >= _currentWeapon.Model.CoolDown;
     private bool _isEmpty => _currentWeapon.Model.CurrentMagazine.Value <= 0;
-    private bool _canFire => _isCoolOn && !_isEmpty && !_onSwap && !_onReload;
+    private bool _isPaused => _pause.IsPaused;
+    private bool _canFire => _isCoolOn && !_isEmpty && !_onSwap && !_onReload && !_isPaused;
 
     private void OnEnable() => BindEvents();
     private void Start() => Init();
@@ -29,8 +32,10 @@ public class WeaponFire : MonoBehaviour
     private void OnDisable() => UnBindEvents();
 
     [Inject]
-    public void Inject(WeaponInputModel inputModel, WeaponController controller, PlayerAnimation animation, PlayerWeaponRigger rigger)
+    public void Inject(WeaponInputModel inputModel, WeaponController controller, PlayerAnimation animation, PlayerWeaponRigger rigger, IPauseService pause, PlayerController player)
     {
+        _player = player;
+        _pause = pause;
         _rigger = rigger;
         _animation = animation;
         _inputModel = inputModel;
@@ -41,6 +46,12 @@ public class WeaponFire : MonoBehaviour
 
     private void CheckFire(bool onFire)
     {
+        if (_player.HasBeacon)
+        {
+            if (onFire) _player.ThrowBeacon();
+            return;
+        }
+
         if (onFire) StartFire();
         else StopFire();
     }
@@ -161,6 +172,7 @@ public class WeaponFire : MonoBehaviour
 
     private void CheckSwap(float value)
     {
+        if (_player.HasBeacon) return;
         if (_onSwap) return;
         if (value > 0) StartCoroutine(SwapRoutine(true));
         else if (value < 0) StartCoroutine(SwapRoutine(false));

@@ -41,6 +41,17 @@ public class PlayerWeaponRigger : MonoBehaviour
         _rig.Build();
     }
 
+    public void HoldThrown(GameObject temp, Transform right)
+    {
+        temp.transform.SetParent(_weaponPivot, false);
+        temp.transform.localPosition = Vector3.zero;
+        temp.transform.localRotation = Quaternion.identity;
+
+        _leftHand.data.target = null;
+        _rightHand.data.target = right;
+        _rig.Build();
+    }
+
     public void DisApplyRig()
     {
         _leftHand.data.target = null;

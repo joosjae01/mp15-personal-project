@@ -8,5 +8,6 @@ public struct TargetContext
     public TargetType Type;
     public ISpawner Spawner;
     public PlayerDataModel PlayerData;
+    public PlayerController PlayerController;
     public int IntParameter;
 }

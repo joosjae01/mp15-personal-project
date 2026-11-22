@@ -16,7 +16,7 @@ MonoBehaviour:
   Shield: 50
   MoveSpeed: 6
   AttackDelay: 2
-  AttackValue: 5
+  AttackValue: 20
   AttackRange: 2
   DetectRange: 15
   MinRange: 0

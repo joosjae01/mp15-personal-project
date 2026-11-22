@@ -6,6 +6,7 @@ public interface ISpawner
 {
     public void StartSpawn(Action<bool> action);
     public void StopSpawn();
-    public EnemyController GetEnemy(GameObject clone);
+    public bool TryGetEnemy(GameObject clone, out EnemyController enemy);
     public Dictionary<GameObject, EnemyController> GetEnemies();
+    public int KillCount { get; }
 }

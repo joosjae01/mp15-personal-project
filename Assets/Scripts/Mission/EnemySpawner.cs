@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour, ISpawner
     [SerializeField] private float _maxRadius = 20f;
     [SerializeField] private int _tryCount = 10;
 
+    public int KillCount { get; private set;}
     private float _elapsed;
     private bool _isActivated;
     private bool _isCoolOn => _elapsed >= _spawnPeriod;
@@ -137,6 +138,7 @@ public class EnemySpawner : MonoBehaviour, ISpawner
 
     private void RemoveEnemy(GameObject enemy)
     {
+        KillCount++;
         _currentEnemies.Remove(enemy);
     }
 
@@ -159,5 +161,8 @@ public class EnemySpawner : MonoBehaviour, ISpawner
 
     public Dictionary<GameObject, EnemyController> GetEnemies() => _currentEnemies;
 
-    public EnemyController GetEnemy(GameObject clone) => _currentEnemies[clone];
+    public bool TryGetEnemy(GameObject clone, out EnemyController enemy)
+    {
+        return _currentEnemies.TryGetValue(clone, out enemy);
+    }
 }

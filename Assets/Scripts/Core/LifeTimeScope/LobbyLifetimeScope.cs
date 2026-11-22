@@ -19,6 +19,8 @@ public class LobbyLifetimeScope : LifetimeScope
         builder.RegisterInstance(_missionBoxSO);
         builder.RegisterInstance(_missionDataSO);
 
+        builder.Register<IPauseService, PauseService>(Lifetime.Singleton);
+
         /// 데이터/입력 모델
         builder.Register<PlayerDataModel>(Lifetime.Scoped);
         builder.Register<PlayerInputModel>(Lifetime.Scoped);

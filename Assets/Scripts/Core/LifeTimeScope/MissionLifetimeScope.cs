@@ -24,6 +24,10 @@ public class MissionLifetimeScope : LifetimeScope
         //DataModel
         builder.Register<PlayerDataModel>(Lifetime.Scoped);
 
+        //Pod
+        builder.Register<PodCommandInput>(Lifetime.Scoped);
+        builder.RegisterComponentInHierarchy<EscapePodActivator>();
+
         //Factory
         builder.Register<IInputFactory, InputFactory>(Lifetime.Scoped);
         builder.Register<IWeaponFactory, WeaponFactory>(Lifetime.Scoped);
@@ -55,6 +59,7 @@ public class MissionLifetimeScope : LifetimeScope
         builder.RegisterComponentInHierarchy<PlayerMovement>();
         builder.RegisterComponentInHierarchy<PlayerAnimation>();
         builder.RegisterComponentInHierarchy<PlayerController>();
+        builder.RegisterComponentInHierarchy<PlayerInteractor>();
         builder.RegisterComponentInHierarchy<PlayerWeaponRigger>();
 
         //Enemy
@@ -72,5 +77,6 @@ public class MissionLifetimeScope : LifetimeScope
         builder.RegisterComponentInHierarchy<PlayerWeaponUI>();
         builder.RegisterComponentInHierarchy<StratagemPanel>();
         builder.RegisterComponentInHierarchy<MissionTrackerPanel>();
+        builder.RegisterComponentInHierarchy<GameResultPanel>();
     }
 }

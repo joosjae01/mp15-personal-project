@@ -18,3 +18,4 @@ MonoBehaviour:
   Fire: {fileID: -1276603437341083824, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}
   Reload: {fileID: 7316508319817757635, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}
   Interact: {fileID: 8536547344632138660, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}
+  Escape: {fileID: -7013257314241477181, guid: e068abf94494c9740baa6f747bf70e4c, type: 3}

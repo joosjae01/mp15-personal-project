@@ -9,8 +9,8 @@ public class PlayerInteractor : MonoBehaviour
     [Inject] private PlayerInputModel _input;
     private IInteractable _target;
 
-    private void OnEnable() => _input.OnInteract.AddListener(OnInteract);
-    private void OnDisable() => _input.OnInteract.RemoveListener(OnInteract);
+    private void Start() => _input.OnInteract.AddListener(OnInteract);
+    private void OnDestroy() => _input.OnInteract.RemoveListener(OnInteract);
 
     private void Update() => FindTarget();
 

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f46505a43e3124dad876dc1721c776, type: 3}
   m_Name: SO_PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataSO
-  <MaxHealth>k__BackingField: 500000
+  <MaxHealth>k__BackingField: 300
   <MoveSpeed>k__BackingField: 8

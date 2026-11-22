@@ -19,8 +19,8 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 8fdd84e5e2a31fb4aa4b364b85e7cc9d, type: 3}
   Power: 80
   FireRate: 1
-  Stability: 0.5
+  Stability: 0.4
   MaxMagazine: 8
   AmmoClip: 2
-  Range: 4
+  Range: 5.5
   ReloadTime: 2

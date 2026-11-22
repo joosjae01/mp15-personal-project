@@ -19,6 +19,11 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 6d7ee8155f6b3d249beeec9c829cebf9, type: 3}
   Creation: {fileID: 4996084466630847820, guid: 499989cb03a7c7147a1ff3e7efbcdcb4, type: 3}
   Type: 0
-  Command: 020000000200000001000000
+  Command: 04000000040000000200000003000000
   Action:
   - {fileID: 11400000, guid: f0e5473405f7d954a947010d0663c221, type: 2}
+  - {fileID: 11400000, guid: d930203ce2a3c974d83be8db266121c5, type: 2}
+  - {fileID: 11400000, guid: 6432cfa958c7f9646ba1f8c88e64e117, type: 2}
+  - {fileID: 11400000, guid: 0b954515396e0404398f58361575cf9a, type: 2}
+  - {fileID: 11400000, guid: fb681c9fe0e99ca40909347756a1b0ff, type: 2}
+  - {fileID: 11400000, guid: 60f15307f423ced48b6652fc472d1332, type: 2}

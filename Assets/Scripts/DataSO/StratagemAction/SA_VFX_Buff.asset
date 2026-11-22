@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SA_VFX_Buff
   m_EditorClassIdentifier: Assembly-CSharp::AVFX
   Delay: 0
-  _VFX: {fileID: 8127971922947971826, guid: d8f2b7ca00b05e94f8511e52858439d4, type: 3}
+  _VFX: {fileID: 8127971922947971826, guid: 7d29b5d157ea61347b4248bf752da615, type: 3}
   _canChase: 1
+  _toMonster: 0

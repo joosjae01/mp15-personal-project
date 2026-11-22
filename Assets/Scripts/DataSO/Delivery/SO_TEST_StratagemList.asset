@@ -15,5 +15,5 @@ MonoBehaviour:
   StratagemData:
   - {fileID: 11400000, guid: 0b1e825735d15ea45adaa48567718a9a, type: 2}
   - {fileID: 11400000, guid: abe375e6a3bfc7841945abf2edaa2f54, type: 2}
-  - {fileID: 11400000, guid: 5276fa0153ee95c4184196042f4eb029, type: 2}
   - {fileID: 11400000, guid: 6e7e336db55a0144c818b1545264672a, type: 2}
+  - {fileID: 11400000, guid: 9005af1a4bf0f5b40945c4cd7cd5e577, type: 2}

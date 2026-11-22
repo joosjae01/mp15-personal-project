@@ -13,8 +13,8 @@ public class PlayerRotate : MonoBehaviour
         _inputModel = inputModel;
     }
 
-    private void OnEnable() => BindEvents();
-    private void OnDisable() => UnBindEvents();
+    private void Start() => BindEvents();
+    private void OnDestroy() => UnBindEvents();
 
     private void Look(Vector3 lookInput)
     {

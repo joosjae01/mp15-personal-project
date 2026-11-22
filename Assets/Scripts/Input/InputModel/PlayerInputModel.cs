@@ -6,6 +6,7 @@ public class PlayerInputModel
     public ObservableProperty<Vector3> LookDirection;
     public ObservableProperty<bool> IsMoving;
     public ObservableProperty<bool> OnInteract;
+    public ObservableProperty<bool> OnEscape;
 
     public PlayerInputModel()
     {
@@ -13,5 +14,6 @@ public class PlayerInputModel
         LookDirection = new(Vector3.zero);
         IsMoving = new(false);
         OnInteract = new(false);
+        OnEscape = new(false);
     }
 }

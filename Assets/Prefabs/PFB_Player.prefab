@@ -229,8 +229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e818bfaf564fda14387a5919c400bcec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  _forwardForce: 0
-  _upForce: 0
+  _forwardForce: 20
+  _upForce: 5
 --- !u!114 &408117735322385663
 MonoBehaviour:
   m_ObjectHideFlags: 0

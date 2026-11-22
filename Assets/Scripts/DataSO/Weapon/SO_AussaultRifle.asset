@@ -13,15 +13,14 @@ MonoBehaviour:
   m_Name: SO_AussaultRifle
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   Name: "\uB3CC\uACA9\uC18C\uCD1D"
-  AnimationIndex: 1
   Prefab: {fileID: 4658884615271663114, guid: 5b9ac37811d12354a91355b0d336ec99, type: 3}
   VFX: {fileID: 6760226890695019780, guid: 31f165ce69efa2c4d8cec51491198de2, type: 3}
   SFX: {fileID: 11400000, guid: 882369f4beacd8d4fa99b66b204408b9, type: 2}
   Icon: {fileID: 21300000, guid: ea02320b4960c204ba86483ef3cf8c3c, type: 3}
-  Power: 20
-  FireRate: 5
+  Power: 30
+  FireRate: 8
   Stability: 0.2
   MaxMagazine: 200
   AmmoClip: 5
   Range: 10
-  ReloadTime: 1
+  ReloadTime: 2

@@ -13,8 +13,6 @@ public class MissionLifetimeScope : LifetimeScope
     protected override void Configure(IContainerBuilder builder)
     {
         //GameService
-        builder.Register<IPauseService, PauseService>(Lifetime.Singleton);
-        builder.RegisterComponent(_soundService).As<ISoundService>();
         builder.RegisterComponent(_poolService).As<IPoolService>();
 
         //SO
@@ -73,6 +71,7 @@ public class MissionLifetimeScope : LifetimeScope
         builder.RegisterComponentInHierarchy<MissionController>();
 
         //UI
+        builder.RegisterComponentInHierarchy<PauseUI>();
         builder.RegisterComponentInHierarchy<PlayerHealthUI>();
         builder.RegisterComponentInHierarchy<PlayerWeaponUI>();
         builder.RegisterComponentInHierarchy<StratagemPanel>();

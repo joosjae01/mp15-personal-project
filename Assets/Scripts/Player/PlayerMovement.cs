@@ -10,13 +10,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _direction;
 
     private void Awake() => _rigidBody = GetComponent<Rigidbody>();
-    private void OnEnable() => BindEvents();
+    private void Start() => BindEvents();
     private void FixedUpdate()
     {
         if (_inputModel.IsMoving.Value) Move();
         else Stop();
     }
-    private void OnDisable() => UnBindEvents();
+    private void OnDestroy() => UnBindEvents();
 
     private void GetDirection(Vector2 moveInput) => _direction = new(moveInput.x, 0.0f, moveInput.y);
     private void Move()

@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 696812211542312619}
   - component: {fileID: 2571962073127595279}
   - component: {fileID: 6034495470116401692}
-  - component: {fileID: -3816357451870815341}
+  - component: {fileID: 8615158976503556761}
   m_Layer: 6
   m_Name: PFB_TEST_RangedEnemy
   m_TagString: Untagged
@@ -68,6 +68,7 @@ Transform:
   m_Children:
   - {fileID: 6556256867952247070}
   - {fileID: 7206347512774680779}
+  - {fileID: 4329689679558455616}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7426313634744884927
@@ -86,7 +87,7 @@ MonoBehaviour:
   <NavMeshAgent>k__BackingField: {fileID: 696812211542312619}
   <Animator>k__BackingField: {fileID: 6602685458354732786}
   _dataSO: {fileID: 11400000, guid: 5475aa895c20212489c5071a909b989d, type: 2}
-  _attackBase: {fileID: -3816357451870815341}
+  _attackBase: {fileID: 8615158976503556761}
   _enemyHitEffect: {fileID: 2888593094556197783}
 --- !u!114 &2888593094556197783
 MonoBehaviour:
@@ -177,7 +178,7 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &-3816357451870815341
+--- !u!114 &8615158976503556761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,13 +187,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 5717399120404681861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17291c63f3d3fe24f83a7b28453dc6f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fda48ed4985527488b44a3ef9a3ba91, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
-  _boxWidth: 0
-  _playerMask:
-    serializedVersion: 2
-    m_Bits: 128
+  m_EditorClassIdentifier: Assembly-CSharp::RangedAttack
+  _prefab: {fileID: 9121026862627060456, guid: 33ae4ccef769db144bfd32e929fac0ae, type: 3}
+  _muzzlePoint: {fileID: 4329689679558455616}
+--- !u!1 &8699556846145207136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4329689679558455616}
+  m_Layer: 0
+  m_Name: muzzlePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4329689679558455616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8699556846145207136}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1888082361134572657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6553377662281682450
 PrefabInstance:
   m_ObjectHideFlags: 0

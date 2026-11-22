@@ -9,6 +9,7 @@ public class WeaponSlotView : MonoBehaviour, IView
 {
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private Image _icon;
+    [SerializeField] private Image _selected;
     [SerializeField] private List<Image> _statusBar;
     [SerializeField] private Button _select;
 
@@ -32,11 +33,13 @@ public class WeaponSlotView : MonoBehaviour, IView
         {
             _vm.AddContext(_index);
             IsSelected.Value = true;
+            _selected.gameObject.SetActive(true);
         }
         else
         {
             _vm.RemoveContext(_index);
             IsSelected.Value = false;
+            _selected.gameObject.SetActive(false);
         }
         
     }

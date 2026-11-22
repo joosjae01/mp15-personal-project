@@ -8,6 +8,7 @@ public class StratagemSlotView : MonoBehaviour, IView
 {
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private Image _icon;
+    [SerializeField] private Image _selected;
     [SerializeField] private Button _button;
 
     [Inject] private ReadyStratagemVM _vm;
@@ -31,6 +32,7 @@ public class StratagemSlotView : MonoBehaviour, IView
             if (_vm.AddDataSO(_dataSO))
             {
                 IsSelected.Value = true;
+                _selected.gameObject.SetActive(true);
             }
         }
         else
@@ -38,6 +40,7 @@ public class StratagemSlotView : MonoBehaviour, IView
             if (_vm.RemoveDataSO(_dataSO))
             {
                 IsSelected.Value = false;
+                _selected.gameObject.SetActive(false);
             }
         }
     }

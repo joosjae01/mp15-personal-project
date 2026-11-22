@@ -122,9 +122,6 @@ public class EnemySpawner : MonoBehaviour, ISpawner
                 enemy.NavMeshAgent.Warp(pos);
 
                 BindEnemy(enemy);
-
-                Debug.Log($"스폰: {enemy.name}, _OnKilled null? {_OnKilled == null}, IsKilled={enemy.DataModel.IsKilled.Value}");
-
                 _currentEnemies[enemy.gameObject] = enemy;
             }
         }

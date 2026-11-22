@@ -54,6 +54,7 @@ public class PodCommandInput
         {
             _index = 0;
             _ui.SetProgress(0);
+            End(false);
             return;
         }
 

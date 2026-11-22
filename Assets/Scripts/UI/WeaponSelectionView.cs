@@ -13,20 +13,29 @@ public class WeaponSelectionView : MonoBehaviour, IView
     [SerializeField] private List<TextMeshProUGUI> _weaponNames;
     [SerializeField] private Sprite _null;
     [SerializeField] private Button _confirm;
+    [SerializeField] private SoundDataSO _sound;
     
     private ReadyWeaponVM _vm;
     private IViewFactory _factory;
+    private ISoundService _soundService;
     private Dictionary<int, IView> _viewDict;
     private WeaponSlotSO _slotSO;
     private bool _isCreated;
 
     [Inject]
-    public void Inject(ReadyWeaponVM vm, WeaponSlotSO slotSO, IViewFactory factory)
+    public void Inject(ReadyWeaponVM vm, WeaponSlotSO slotSO, IViewFactory factory, ISoundService soundService)
     {
+        _soundService = soundService;
         _vm = vm;
         _factory = factory;
         _slotSO = slotSO;
     }
+
+    public void PlaySound()
+    {
+        _soundService.PlaySFX(_sound);
+    }
+
 
     private void SetDelivery(bool isChanged)
     {
@@ -58,6 +67,7 @@ public class WeaponSelectionView : MonoBehaviour, IView
     {
         gameObject.SetActive(false);
         _confirm.onClick.RemoveListener(Hide);
+        _confirm.onClick.RemoveListener(PlaySound);
         foreach (KeyValuePair<int, IView> key in _viewDict)
         {
             key.Value.RemoveListener(SetDelivery);
@@ -71,6 +81,7 @@ public class WeaponSelectionView : MonoBehaviour, IView
 
         _confirm.onClick.RemoveListener(Hide);
         _confirm.onClick.AddListener(Hide);
+        _confirm.onClick.AddListener(PlaySound);
 
         if (!_isCreated)
         {

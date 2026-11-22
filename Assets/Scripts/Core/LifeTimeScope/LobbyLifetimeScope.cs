@@ -48,5 +48,8 @@ public class LobbyLifetimeScope : LifetimeScope
         builder.RegisterComponentInHierarchy<WeaponSelectionView>();
         builder.RegisterComponentInHierarchy<StratagemSelectionView>();
         builder.RegisterComponentInHierarchy<ReadyToCombatUI>();
+
+        //BGM
+        builder.RegisterComponentInHierarchy<ReadyOST>();
     }
 }

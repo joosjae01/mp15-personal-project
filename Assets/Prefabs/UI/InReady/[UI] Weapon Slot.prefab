@@ -842,6 +842,7 @@ MonoBehaviour:
   - {fileID: 4695234579921621203}
   - {fileID: 659971256981344668}
   _select: {fileID: 4893562267638465837}
+  _sound: {fileID: 11400000, guid: 2c139b1d7af72924ba814fbdf8636e4f, type: 2}
 --- !u!114 &-1352557603042628715
 MonoBehaviour:
   m_ObjectHideFlags: 0

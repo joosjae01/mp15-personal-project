@@ -584,3 +584,4 @@ MonoBehaviour:
   _icon: {fileID: 2823017370484449305}
   _selected: {fileID: 6234932765738324780}
   _button: {fileID: 9026372206258997829}
+  _sound: {fileID: 11400000, guid: 2c139b1d7af72924ba814fbdf8636e4f, type: 2}

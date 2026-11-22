@@ -59,6 +59,7 @@ public class StratagemInputBuffer : IStartable, IDisposable
         if(IsBlocked) return;
         Command result = GetInput(input);
         if (result == Command.INVALID) return;
+
         List<int> toRemove = new();
         int loop = _candidate.Count;
 

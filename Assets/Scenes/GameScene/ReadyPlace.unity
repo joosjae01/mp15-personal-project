@@ -5041,6 +5041,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492581414}
   m_CullTransparentMesh: 1
+--- !u!1 &1504320384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1504320386}
+  - component: {fileID: 1504320385}
+  m_Layer: 0
+  m_Name: ReadyOST
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1504320385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504320384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389bcb7650c936c4aa62d554a9431c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReadyOST
+  _bgm: {fileID: 11400000, guid: add021995695c7a4ebc693edad25ad51, type: 2}
+--- !u!4 &1504320386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504320384}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.20798, y: 37.49357, z: -41.48875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1519979295
 GameObject:
   m_ObjectHideFlags: 0
@@ -6205,6 +6250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[UI] Stratagem Selection'
       objectReference: {fileID: 0}
+    - target: {fileID: 5512061067160314038, guid: 2d499d57ac8149144a6489fc27fd7aa2, type: 3}
+      propertyPath: _sfx
+      value: 
+      objectReference: {fileID: 11400000, guid: b634bca9e6949a643a59c7fdcf91c37e, type: 2}
     - target: {fileID: 5577854354246994390, guid: 2d499d57ac8149144a6489fc27fd7aa2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6378,6 +6427,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5649076857672780522, guid: 259992bed22aede4388cbeab4c2acfef, type: 3}
+      propertyPath: _sound
+      value: 
+      objectReference: {fileID: 11400000, guid: b634bca9e6949a643a59c7fdcf91c37e, type: 2}
     - target: {fileID: 5856428711907863541, guid: 259992bed22aede4388cbeab4c2acfef, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -6410,3 +6463,4 @@ SceneRoots:
   - {fileID: 338346397}
   - {fileID: 876204358}
   - {fileID: 690516072}
+  - {fileID: 1504320386}

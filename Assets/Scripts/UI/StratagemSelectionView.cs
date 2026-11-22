@@ -19,19 +19,26 @@ public class StratagemSelectionView : MonoBehaviour, IView
     [SerializeField] private List<TextMeshProUGUI> _stratagemDescs;
     [SerializeField] private Sprite _null;
     [SerializeField] private Button _confirm;
-
+    [SerializeField] private SoundDataSO _sfx;
     private IObjectResolver _resolver;
+    private ISoundService _soundService;
     private ReadyStratagemVM _vm;
     private StratagemSlotSO _slotSO;
     private Dictionary<StratagemDataSO, IView> _viewDict = new();
     private bool _isCreated;
 
     [Inject]
-    public void Inject(ReadyStratagemVM vm, StratagemSlotSO slotSO, IObjectResolver resolver)
+    public void Inject(ReadyStratagemVM vm, StratagemSlotSO slotSO, IObjectResolver resolver, ISoundService soundService)
     {
         _vm = vm;
         _resolver = resolver;
         _slotSO = slotSO;
+        _soundService = soundService;
+    }
+
+    private void PlaySound()
+    {
+        _soundService.PlaySFX(_sfx);
     }
 
     private void SetDelivery(bool isChanged)
@@ -81,6 +88,7 @@ public class StratagemSelectionView : MonoBehaviour, IView
     public void Hide()
     {
         _confirm.onClick.RemoveListener(Hide);
+        _confirm.onClick.RemoveListener(PlaySound);
         gameObject.SetActive(false);
 
         foreach (KeyValuePair<StratagemDataSO, IView> key in _viewDict)
@@ -96,6 +104,7 @@ public class StratagemSelectionView : MonoBehaviour, IView
 
         _confirm.onClick.RemoveListener(Hide);
         _confirm.onClick.AddListener(Hide);
+        _confirm.onClick.AddListener(PlaySound);
 
         if (!_isCreated)
         {

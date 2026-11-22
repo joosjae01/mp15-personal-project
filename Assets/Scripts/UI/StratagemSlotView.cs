@@ -10,8 +10,10 @@ public class StratagemSlotView : MonoBehaviour, IView
     [SerializeField] private Image _icon;
     [SerializeField] private Image _selected;
     [SerializeField] private Button _button;
+    [SerializeField] private SoundDataSO _sound;
 
     [Inject] private ReadyStratagemVM _vm;
+    [Inject] private ISoundService _soundService;
 
     public ObservableProperty<bool> IsSelected;
     private StratagemDataSO _dataSO;
@@ -25,6 +27,11 @@ public class StratagemSlotView : MonoBehaviour, IView
         _button.onClick.AddListener(Select);
     }
 
+    private void PlaySound()
+    {
+        _soundService.PlaySFX(_sound);
+    }
+
     public void Select()
     {
         if (!IsSelected.Value)
@@ -33,6 +40,7 @@ public class StratagemSlotView : MonoBehaviour, IView
             {
                 IsSelected.Value = true;
                 _selected.gameObject.SetActive(true);
+                PlaySound();
             }
         }
         else

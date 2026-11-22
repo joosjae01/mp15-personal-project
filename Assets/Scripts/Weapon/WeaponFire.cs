@@ -5,6 +5,7 @@ using VContainer;
 public class WeaponFire : MonoBehaviour
 {
     [SerializeField] private float _swapDelay;
+    [SerializeField] private SoundDataSO _sfx;
 
     private PlayerAnimation _animation;
     private PlayerController _player;
@@ -16,6 +17,7 @@ public class WeaponFire : MonoBehaviour
     private Coroutine _reloadRoutine;
     private WaitForSeconds _waitForSwap;
     private IPauseService _pause;
+    [Inject] private ISoundService _soundService;
     private IWeapon _currentWeapon => _slot.CurrentWeapon;
 
     private float _elapsed;
@@ -100,7 +102,7 @@ public class WeaponFire : MonoBehaviour
                 return;
             }
 
-
+            _soundService.PlaySFX(_sfx);
             StartReload();
         }
         else

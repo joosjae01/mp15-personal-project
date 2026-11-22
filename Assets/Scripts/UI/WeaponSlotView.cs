@@ -12,7 +12,10 @@ public class WeaponSlotView : MonoBehaviour, IView
     [SerializeField] private Image _selected;
     [SerializeField] private List<Image> _statusBar;
     [SerializeField] private Button _select;
+    [SerializeField] private SoundDataSO _sound;
 
+
+    [Inject] private ISoundService _soundService;
     [Inject] private ReadyWeaponVM _vm;
     private int _index;
     public ObservableProperty<bool> IsSelected;
@@ -34,6 +37,7 @@ public class WeaponSlotView : MonoBehaviour, IView
             _vm.AddContext(_index);
             IsSelected.Value = true;
             _selected.gameObject.SetActive(true);
+            _soundService.PlaySFX(_sound);
         }
         else
         {

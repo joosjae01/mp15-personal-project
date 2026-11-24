@@ -6,9 +6,11 @@ public sealed class ADeletion : StratagemActionSO
 {
     public override void Enter(ActionContext context)
     {
-        if (context.Creation != null)
+        if (context.Thrown != null)
         {
-            Destroy(context.Creation.GameObject);
+            IPoolable poolable;
+            context.Thrown.TryGetComponent<IPoolable>(out poolable);
+            poolable.Source.Release(poolable);
             context.Thrown = null;
         }
     }

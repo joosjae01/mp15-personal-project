@@ -69,13 +69,13 @@ public class StratagemInputBuffer : IStartable, IDisposable
             {
                 toRemove.Add(command.Key);
                 OnDropped?.Invoke(command.Value);
-                _elected = null;
             }
             else
             {
                 OnProgress?.Invoke(command.Value, _count + 1);
                 if (command.Value.Command.Count == _count + 1)
                 {
+                    _elected = null;
                     _elected = _actionDict[command.Value][0];
                     _electedSO = command.Value;
                 }
